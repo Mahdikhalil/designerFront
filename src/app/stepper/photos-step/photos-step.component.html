@@ -1,24 +1,51 @@
-<div class="bigdiv">
-  <div>
-    <div>
+<!--<div class="bigdiv">-->
+<!--  <div>-->
+<!--    <div>-->
 
-      <button type="button" (click)="addPhotos()">add Photos</button>
+<!--      <button type="button" (click)="addPhotos()">add Photos</button>-->
 
-    </div>
+<!--    </div>-->
 
-    <div>
-      <span *ngFor=" let photoName for nameOfPhotos">
+<!--    <div>-->
+<!--      <span *ngFor=" let photoName for nameOfPhotos">-->
+<!--        <p>*) {{photoName}}</p>-->
+<!--      </span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="containerBTN">-->
+
+<!--    <div>-->
+<!--      <button type="button" (click)="previous()">Précédent</button>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <button type="button" (click)="next()">Suivant</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div>
+
+  <div  class="mx-12 lg:ml-96 lg:w-1/2  mt-8  md:mt-12 ">
+    <div class="p-12  bg-gray-100">
+      <h3 class="text-center">Photos</h3>
+      <div class="mt-4">
+        <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="addPhotos()">Prendre une photo</button>
+      </div>
+      <div class="px-4 pt-10 pb-8">
+     <span *ngFor=" let photoName for nameOfPhotos">
         <p>*) {{photoName}}</p>
       </span>
+      </div>
     </div>
-  </div>
-  <div class="containerBTN">
+    <div class="mt-8 grid grid-cols-2 gap-x-4 ">
 
-    <div>
-      <button type="button" (click)="previous()">Précédent</button>
-    </div>
-    <div>
-      <button type="button" (click)="next()">Suivant</button>
+      <div>
+        <button class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="previous()">Précédent</button>
+      </div>
+      <div>
+        <button class="w-full  inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="next()">Suivant</button>
+      </div>
     </div>
   </div>
+
 </div>
