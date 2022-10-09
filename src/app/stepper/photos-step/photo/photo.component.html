@@ -1,0 +1,25 @@
+
+<div class="form-group">
+  <div>
+    <label>File Upload  </label>
+    <input type="file" accept="image/*" (change)="onSelectFile($event)">
+    <img [src]="imgURL" height="200" *ngIf="imgURL">
+  </div>
+  <div>
+    <select name="sel" id="select" [(ngModel)]="select">
+      <option value="">--Please choose an option--</option>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="hamster">Hamster</option>
+      <option value="parrot">Parrot</option>
+      <option value="spider">Spider</option>
+      <option value="goldfish">Goldfish</option>
+    </select>
+  </div>
+  <div>
+    <button type="button" (click)="addImages()">Ajouter L'image</button>
+  </div>
+  <div>
+    <button type="button" (click)="returnToAllImages()">Précédent</button>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div>
+  <form [formGroup]="informationForm">
+    <div class="bigdiv">
+      <div>
+        <label for="idClient">
+          Identifiant du client</label>
+        <input
+          id="idClient"
+          class="fadeIn second"
+          formControlName="idClient" required
+        />
+      </div>
+      <div>
+        <label for="adresse">
+          Adresse du chantier</label>
+        <input
+          id="adresse"
+          class="fadeIn second"
+          formControlName="adresse"
+        />
+      </div>
+      <div>
+        <label for="clientName">
+          Nom du client</label>
+        <input
+          id="clientName"
+          class="fadeIn second"
+          formControlName="clientName"
+        />
+      </div>
+      <div>
+        <label for="frontLength">
+          Longueur de la facade</label>
+        <input
+          id="frontLength"
+          class="fadeIn second"
+          formControlName="frontLength"
+        />
+      </div>
+      <div>
+        <label for="frontHeight">
+          hauteur de la facade</label>
+        <input
+          id="frontHeight"
+          class="fadeIn second"
+          formControlName="frontHeight"
+        />
+      </div>
+      <div>
+        <button (click)="next()">Suivant</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+

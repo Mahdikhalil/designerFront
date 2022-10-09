@@ -1,0 +1,32 @@
+<div class="stepperContainer">
+  <div class="navBar flex">
+    <div class="firstContainer flex">
+      <div class="icon">
+        <img class="avatar" src="assets/avatar.svg">
+      </div>
+      <div class="welcomeMsg">
+        <span>Welcome {{user?.fullname}}</span>
+      </div>
+    </div>
+    <div class="logout">
+      <button class="btn" type="button" (click)="logout()">Logout</button>
+    </div>
+  </div>
+  <div *ngIf="step == 1" class="informationStep">
+    <app-information-step (firstIsDone)="firstStepDone($event)"></app-information-step>
+  </div>
+  <div *ngIf="step == 2 && !isAddPhoto" class="informationStep">
+    <app-photos-step [idClient]="idClient" (goBack)="goBack($event)"
+    (goNext)="goNext($event)" (addPhoto)="addPhoto($event)"
+    ></app-photos-step>
+  </div>
+  <div *ngIf="isAddPhoto" class="informationStep">
+    <app-photo (goBack)="goBack($event)" ></app-photo>
+  </div>
+  <div *ngIf="step == 3" class="informationStep">
+    <app-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-formulaire>
+  </div>
+  <div *ngIf="step == 4" class="informationStep">
+    <app-conclution (goBack)="goBack($event)"></app-conclution>
+  </div>
+</div>

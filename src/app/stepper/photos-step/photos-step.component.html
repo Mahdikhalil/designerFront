@@ -1,0 +1,24 @@
+<div class="bigdiv">
+  <div>
+    <div>
+
+      <button type="button" (click)="addPhotos()">add Photos</button>
+
+    </div>
+
+    <div>
+      <span *ngFor=" let photoName for nameOfPhotos">
+        <p>*) {{photoName}}</p>
+      </span>
+    </div>
+  </div>
+  <div class="containerBTN">
+
+    <div>
+      <button type="button" (click)="previous()">Précédent</button>
+    </div>
+    <div>
+      <button type="button" (click)="next()">Suivant</button>
+    </div>
+  </div>
+</div>

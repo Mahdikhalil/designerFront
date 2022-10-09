@@ -1,0 +1,20 @@
+<div>
+  <div>
+    <select name="sel" id="select" [(ngModel)]="select">
+      <option value="" selected>--Please choose an option--</option>
+      <option value="Avis favorable">Avis favorable</option>
+      <option value="Avis favorable Sous Réserve">Avis favorable sous réserve</option>
+      <option value="Avid défavorable">Avid défavorable</option>
+    </select>
+  </div>
+  <div>
+    <button type="button" (click)="finish()">Terminer</button>
+  </div>
+  <div>
+    <button type="button" (click)="previous()">Précédent</button>
+  </div>
+  <div>
+<!--    <button type="button" (click)="pdf()">Télécharger</button>-->
+    <a href="{{url}}" type="button" >Télécharger le pdf</a>
+  </div>
+</div>
