@@ -1,20 +1,60 @@
-<div>
-  <div>
-    <select name="sel" id="select" [(ngModel)]="select">
-      <option value="" selected>--Please choose an option--</option>
-      <option value="Avis favorable">Avis favorable</option>
-      <option value="Avis favorable Sous Réserve">Avis favorable sous réserve</option>
-      <option value="Avid défavorable">Avid défavorable</option>
-    </select>
+<!--<div>-->
+<!--  <div>-->
+<!--    <select name="sel" id="select" [(ngModel)]="select">-->
+<!--      <option value="" selected>&#45;&#45;Please choose an option&#45;&#45;</option>-->
+<!--      <option value="Avis favorable">Avis favorable</option>-->
+<!--      <option value="Avis favorable Sous Réserve">Avis favorable sous réserve</option>-->
+<!--      <option value="Avid défavorable">Avid défavorable</option>-->
+<!--    </select>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button type="button" (click)="finish()">Terminer</button>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button type="button" (click)="previous()">Précédent</button>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <a href="{{url}}" type="button">Télécharger le pdf</a>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div class="mx-8 md:mx-24 lg:mx-96 mt-24">
+  <div class="mt-5 md:mt-0">
+    <form>
+      <div class="shadow sm:overflow-hidden sm:rounded-md">
+        <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+          <div>
+            <label for="comments"
+                   class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+              <span>choissisez un commentaire </span>
+              <select id="comments" [(ngModel)]="select"
+                      class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="Avis favorable">Avis favorable</option>
+                <option value="Avis favorable Sous Réserve">Avis favorable sous réserve</option>
+                <option value="Avid défavorable">Avid défavorable</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="bg-gray-50 grid grid-cols-2 gap-x-4  px-4 py-3 text-right sm:px-6">
+          <button type="button" (click)="previous()"
+                  class="inline-flex justify-center rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            Précédent
+          </button>
+
+          <button type="button" (click)="finish()"
+                  class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            Enregistrer
+          </button>
+          <div *ngIf="enableDownload">
+            <a href="{{url}}" type="button"
+               class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              Télécharger le pdf</a>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
-  <div>
-    <button type="button" (click)="finish()">Terminer</button>
-  </div>
-  <div>
-    <button type="button" (click)="previous()">Précédent</button>
-  </div>
-  <div>
-<!--    <button type="button" (click)="pdf()">Télécharger</button>-->
-    <a href="{{url}}" type="button" >Télécharger le pdf</a>
-  </div>
+
 </div>

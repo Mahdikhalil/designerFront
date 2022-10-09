@@ -16,6 +16,7 @@ export class ConclutionComponent implements OnInit {
   idClient: string;
   select: string;
   url: string;
+  enableDownload: boolean;
 
   constructor(private projectService: ProjectService,
               ) {
@@ -31,8 +32,9 @@ export class ConclutionComponent implements OnInit {
   finish(): any {
     this.projectService.idClient$.subscribe(idClient => {
       this.projectService.saveConclution(this.select, idClient).subscribe(ok => {
-      });
 
+      });
+      this.enableDownload = true;
     });
   }
 

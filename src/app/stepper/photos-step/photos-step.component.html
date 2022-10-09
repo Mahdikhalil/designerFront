@@ -32,9 +32,7 @@
         <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="addPhotos()">Prendre une photo</button>
       </div>
       <div class="px-4 pt-10 pb-8">
-     <span *ngFor=" let photoName for nameOfPhotos">
-        <p>*) {{photoName}}</p>
-      </span>
+        <li *ngFor="let photoName of nameOfPhotos">{{photoName}}</li>
       </div>
     </div>
     <div class="mt-8 grid grid-cols-2 gap-x-4 ">
@@ -43,7 +41,7 @@
         <button class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="previous()">Précédent</button>
       </div>
       <div>
-        <button class="w-full  inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="next()">Suivant</button>
+        <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="next()">Suivant</button>
       </div>
     </div>
   </div>

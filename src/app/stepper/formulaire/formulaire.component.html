@@ -1,87 +1,146 @@
-<div>
-  <form [formGroup]="formulaireForm">
-    <div class="bigdiv">
-      <div>
-        <label for="implantation">
-          Implantation</label>
-        <input
-          id="implantation"
-          class="fadeIn second"
-          formControlName="implantation"
-        />
-      </div>
+<!--<div>-->
+<!--  <form [formGroup]="formulaireForm">-->
+<!--    <div class="bigdiv">-->
+<!--      <div>-->
+<!--        <label for="implantation">-->
+<!--          Implantation</label>-->
+<!--        <input-->
+<!--          id="implantation"-->
+<!--          class="fadeIn second"-->
+<!--          formControlName="implantation"-->
+<!--        />-->
+<!--      </div>-->
 
-      <div>
-        <label for="appuisAndCalages">
-          Appuis et Calages</label>
-        <input
-          id="appuisAndCalages"
-          class="fadeIn second"
-          formControlName="appuisAndCalages"
-        />
-      </div>
+<!--      <div>-->
+<!--        <label for="appuisAndCalages">-->
+<!--          Appuis et Calages</label>-->
+<!--        <input-->
+<!--          id="appuisAndCalages"-->
+<!--          class="fadeIn second"-->
+<!--          formControlName="appuisAndCalages"-->
+<!--        />-->
+<!--      </div>-->
 
-      <div>
-        <label for="conception">
-          Conception</label>
-        <input
-          id="conception"
-          class="fadeIn second"
-          formControlName="conception"
-        />
-      </div>
+<!--      <div>-->
+<!--        <label for="conception">-->
+<!--          Conception</label>-->
+<!--        <input-->
+<!--          id="conception"-->
+<!--          class="fadeIn second"-->
+<!--          formControlName="conception"-->
+<!--        />-->
+<!--      </div>-->
 
-      <div>
-        <label for="amenagements">
-          Amenagements</label>
-        <input
-          id="amenagements"
-          class="fadeIn second"
-          formControlName="amenagements"
-        />
-      </div>
+<!--      <div>-->
+<!--        <label for="amenagements">-->
+<!--          Amenagements</label>-->
+<!--        <input-->
+<!--          id="amenagements"-->
+<!--          class="fadeIn second"-->
+<!--          formControlName="amenagements"-->
+<!--        />-->
+<!--      </div>-->
 
-      <div>
-        <label for="chargement">
-          Chargement</label>
-        <input
-          id="chargement"
-          class="fadeIn second"
-          formControlName="chargement"
-        />
-      </div>
+<!--      <div>-->
+<!--        <label for="chargement">-->
+<!--          Chargement</label>-->
+<!--        <input-->
+<!--          id="chargement"-->
+<!--          class="fadeIn second"-->
+<!--          formControlName="chargement"-->
+<!--        />-->
+<!--      </div>-->
 
-      <div>
-        <label for="stabilite">
-          Stabilite</label>
-        <input
-          id="stabilite"
-          class="fadeIn second"
-          formControlName="stabilite"
-        />
-      </div>
+<!--      <div>-->
+<!--        <label for="stabilite">-->
+<!--          Stabilite</label>-->
+<!--        <input-->
+<!--          id="stabilite"-->
+<!--          class="fadeIn second"-->
+<!--          formControlName="stabilite"-->
+<!--        />-->
+<!--      </div>-->
 
-      <div>
-        <label for="comment">
-          Comment</label>
-        <input
-          id="comment"
-          class="fadeIn second"
-          formControlName="comment"
-        />
-      </div>
+<!--      <div>-->
+<!--        <label for="comment">-->
+<!--          Commentaire</label>-->
+<!--        <input-->
+<!--          id="comment"-->
+<!--          class="fadeIn second"-->
+<!--          formControlName="comment"-->
+<!--        />-->
+<!--      </div>-->
 
 
 
-      <div>
-        <button (click)="previous()">Précédent</button>
+<!--      <div>-->
+<!--        <button (click)="previous()">Précédent</button>-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <button (click)="next()">Suivant</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->
+
+
+
+
+
+
+
+<div class="mx-8 md:mx-24 mt-10 sm:mt-0">
+  <div class="mt-5 md:mt-0">
+    <form [formGroup]="formulaireForm" >
+      <div class="overflow-hidden shadow sm:rounded-md">
+        <div class="bg-white px-4 py-5 sm:p-6">
+          <div class="grid grid-cols-6 gap-6">
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="implantation" class="block text-sm font-medium text-gray-700">Implantation</label>
+              <input type="text" formControlName="implantation" id="implantation" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="appuisAndCalages" class="block text-sm font-medium text-gray-700"> Appuis et Calages</label>
+              <input type="text"  id="appuisAndCalages" formControlName="appuisAndCalages" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="conception" class="block text-sm font-medium text-gray-700">Conception</label>
+              <input type="text"   id="conception" formControlName="conception" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="amenagements" class="block text-sm font-medium text-gray-700"> Amenagements</label>
+              <input type="text"  id="amenagements" formControlName="amenagements" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="chargement" class="block text-sm font-medium text-gray-700">Chargement</label>
+              <input type="text" id="chargement"  formControlName="chargement" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="stabilite" class="block text-sm font-medium text-gray-700">Stabilite</label>
+              <input type="text" id="stabilite"  formControlName="stabilite" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6">
+              <label for="comment" class="block text-sm font-medium text-gray-700">Commentaire</label>
+              <input type="text" id="comment"  formControlName="comment" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 grid grid-cols-2 gap-x-4 ">
+          <div>
+            <button class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="previous()">Précédent</button>
+          </div>
+          <div>
+            <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="next()">Suivant</button>
+          </div>
+        </div>
       </div>
-      <div>
-        <button (click)="next()">Suivant</button>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
-
-
-

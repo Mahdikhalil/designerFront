@@ -55,9 +55,11 @@
           </div>
 
           <div>
-            <select id="comments"
+            <label for="comments"
+                   class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+              <span>choissisez un commentaire </span>
+              <select id="comments" [(ngModel)]="select"
                     class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option value="">--Veuiller choisir un commentaire--</option>
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
               <option value="hamster">Hamster</option>
@@ -65,6 +67,7 @@
               <option value="spider">Spider</option>
               <option value="goldfish">Goldfish</option>
             </select>
+            </label>
           </div>
         </div>
         <div class="bg-gray-50 grid grid-cols-2 gap-x-4  px-4 py-3 text-right sm:px-6">
