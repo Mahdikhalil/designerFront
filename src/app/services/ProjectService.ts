@@ -34,8 +34,4 @@ export class ProjectService {
   addImages(formData: FormData,idClient: String ): any {
     return this.http.post<any>(environment.hostUrl + `/projects/addImg/`+idClient,formData);
   }
-
-  pdf(http: HttpResponse<any>,idClient:string): any{
-    return this.http.get<any>(environment.hostUrl + `/projects/pdf/generate/`+idClient);
-  }
 }

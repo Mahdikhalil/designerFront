@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProjectService} from "../../../services/ProjectService";
 import {Router} from "@angular/router";
-import {any} from "codelyzer/util/function";
-import {HttpResponse} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+
 
 @Component({
   selector: 'app-conclution',
@@ -26,7 +26,7 @@ export class ConclutionComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectService.idClient$.subscribe(idClient => {
-      this.url = "http://localhost:8080/projects/pdf/generate/"+idClient
+      this.url = environment.hostUrl + "/projects/pdf/generate/"+idClient
     });
   }
 
