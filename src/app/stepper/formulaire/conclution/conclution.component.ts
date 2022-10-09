@@ -12,6 +12,7 @@ import {HttpResponse} from "@angular/common/http";
 export class ConclutionComponent implements OnInit {
 
   @Output() goBack = new EventEmitter();
+  @Output() goHome = new EventEmitter();
 
   idClient: string;
   select: string;
@@ -19,6 +20,7 @@ export class ConclutionComponent implements OnInit {
   enableDownload: boolean;
 
   constructor(private projectService: ProjectService,
+              private router: Router,
               ) {
   }
 
@@ -32,9 +34,14 @@ export class ConclutionComponent implements OnInit {
   finish(): any {
     this.projectService.idClient$.subscribe(idClient => {
       this.projectService.saveConclution(this.select, idClient).subscribe(ok => {
-
+      },response =>{
+        if(response.status == 200){
+          this.enableDownload = true;
+          confirm("Information sauvegarder ");
+        }else{
+          alert("Une erreur est survenu ");
+        }
       });
-      this.enableDownload = true;
     });
   }
 
@@ -49,5 +56,9 @@ export class ConclutionComponent implements OnInit {
   }*/
   previous() {
     this.goBack.emit(true);
+  }
+
+  Accueil() {
+    this.goHome.emit(true);
   }
 }

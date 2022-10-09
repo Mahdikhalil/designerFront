@@ -55,10 +55,14 @@ export class PhotoComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.userFile);
     formData.append('select',this.select);
-    this.projectService.addImages(formData, this.idClient).subscribe(data => {
-
+    this.projectService.addImages(formData, this.idClient).subscribe(ok => {
+    },response =>{
+      if(response.status == 200){
+        confirm("Image sauvegarder ");
+      }else{
+        alert("Une erreur est survenu ");
+      }
     });
-
   }
 
   returnToAllImages() {

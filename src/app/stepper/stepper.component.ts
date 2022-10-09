@@ -52,4 +52,8 @@ export class StepperComponent implements OnInit {
   addPhoto($event: any) {
     this.isAddPhoto = true;
   }
+
+  goHome($event: any) {
+    this.step=1;
+  }
 }

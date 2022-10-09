@@ -44,9 +44,15 @@ export class InformationStepComponent implements OnInit {
     project.frontHeight = this.informationForm.get('frontHeight').value;
     project.frontLength = this.informationForm.get('frontLength').value;
     this.projectService.saveOrUpdateProject(project).subscribe(ok => {
-      console.log(ok);
+    },response =>{
+      if(response.status == 200){
+        this.firstIsDone.emit(this.informationForm.get('idClient').value);
+        confirm("Information sauvegarder ");
+      }else{
+        alert("Une erreur est survenu ");
+      }
     });
-    this.firstIsDone.emit(this.informationForm.get('idClient').value);
+
   }
 
 }

@@ -58,8 +58,15 @@ export class FormulaireComponent implements OnInit {
       project.stabilite = this.formulaireForm.get('stabilite').value;
       project.comment = this.formulaireForm.get('comment').value;
       this.projectService.saveFormulaire(project, this.idClient).subscribe(ok => {
+      },response =>{
+        if(response.status == 200){
+          confirm("Information sauvegarder ");
+          this.goNext.emit(true);
+        }else{
+          alert("Une erreur est survenu ");
+        }
       });
-      this.goNext.emit(true);
+
     });
 
   }
