@@ -54,7 +54,7 @@ export class PhotoComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.userFile);
     formData.append('select',this.photoComment);
-    formData.append('stage',"r+"+this.stageCounter);
+    formData.append('stage',"R+"+this.stageCounter);
     this.projectService.addImages(formData, this.idClient).subscribe(ok => {
     },response =>{
       if(response.status == 200){
