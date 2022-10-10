@@ -11,7 +11,8 @@ html {
     font-family: "Poppins", sans-serif;
     height: 100vh;
     background: url("src/assets/login-backend.jpg");
-    background-size: contain;
+    background-size: cover;
+    background-position:center;
 }
 
   a {
