@@ -16,8 +16,8 @@ export class PhotoComponent implements OnInit {
   message: string;
   public imagePath;
   idClient: string;
-  select : string;
-
+  photoComment : string;
+  stageCounter : number = 0;
 
   constructor(private projectService: ProjectService,
               ) {
@@ -53,7 +53,8 @@ export class PhotoComponent implements OnInit {
   addImages() {
     const formData = new FormData();
     formData.append('file', this.userFile);
-    formData.append('select',this.select);
+    formData.append('select',this.photoComment);
+    formData.append('stage',"r+"+this.stageCounter);
     this.projectService.addImages(formData, this.idClient).subscribe(ok => {
     },response =>{
       if(response.status == 200){
@@ -66,5 +67,9 @@ export class PhotoComponent implements OnInit {
 
   returnToAllImages() {
     this.goBack.emit(true);
+  }
+
+  nextStage() {
+    this.stageCounter++;
   }
 }
