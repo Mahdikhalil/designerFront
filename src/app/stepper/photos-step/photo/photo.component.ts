@@ -20,7 +20,7 @@ export class PhotoComponent implements OnInit {
 
 
   constructor(private projectService: ProjectService,
-              private router: Router,) {
+              ) {
   }
 
   ngOnInit(): void {
@@ -35,7 +35,6 @@ export class PhotoComponent implements OnInit {
       const file = event.target.files[0];
       this.userFile = file;
       console.log(file.name + " file")
-      // this.f['profile'].setValue(file);
       var mimeType = event.target.files[0].type;
       if (mimeType.match(/image\/*/) == null) {
         this.message = "Only images are supported.";

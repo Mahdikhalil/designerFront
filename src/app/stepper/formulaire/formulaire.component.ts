@@ -60,7 +60,6 @@ export class FormulaireComponent implements OnInit {
       this.projectService.saveFormulaire(project, this.idClient).subscribe(ok => {
       },response =>{
         if(response.status == 200){
-          confirm("Information sauvegarder ");
           this.goNext.emit(true);
         }else{
           alert("Une erreur est survenu ");

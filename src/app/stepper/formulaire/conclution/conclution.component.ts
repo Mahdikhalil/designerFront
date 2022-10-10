@@ -37,7 +37,6 @@ export class ConclutionComponent implements OnInit {
       },response =>{
         if(response.status == 200){
           this.enableDownload = true;
-          confirm("Information sauvegarder ");
         }else{
           alert("Une erreur est survenu ");
         }
@@ -45,15 +44,7 @@ export class ConclutionComponent implements OnInit {
     });
   }
 
-/*  pdf() {
-    let http : HttpResponse<any>;
-    this.projectService.idClient$.subscribe(idClient => {
-      this.projectService.pdf(http,idClient).subscribe(pdf=>{
-        console.log(pdf.type);
-      });
-      // this.router.navigate(['/stepper']);
-    });
-  }*/
+
   previous() {
     this.goBack.emit(true);
   }

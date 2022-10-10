@@ -47,7 +47,6 @@ export class InformationStepComponent implements OnInit {
     },response =>{
       if(response.status == 200){
         this.firstIsDone.emit(this.informationForm.get('idClient').value);
-        confirm("Information sauvegarder ");
       }else{
         alert("Une erreur est survenu ");
       }
