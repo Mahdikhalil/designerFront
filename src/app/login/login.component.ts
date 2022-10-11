@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem("token") === "true")
       this.router.navigate(['/stepper']);
-
   }
 
   handleLogin() {
