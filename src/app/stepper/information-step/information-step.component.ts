@@ -48,7 +48,7 @@ export class InformationStepComponent implements OnInit {
       if(response.status == 200){
         this.firstIsDone.emit(this.informationForm.get('idClient').value);
       }else{
-        alert("Une erreur est survenu ");
+        alert("Nom du projet existe déja ");
       }
     });
 

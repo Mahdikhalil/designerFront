@@ -34,7 +34,6 @@ export class PhotoComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.userFile = file;
-      console.log(file.name + " file")
       var mimeType = event.target.files[0].type;
       if (mimeType.match(/image\/*/) == null) {
         this.message = "Only images are supported.";
@@ -58,6 +57,7 @@ export class PhotoComponent implements OnInit {
     this.projectService.addImages(formData, this.idClient).subscribe(ok => {
     },response =>{
       if(response.status == 200){
+        this.imgURL = null;
         confirm("Image sauvegarder ");
       }else{
         alert("Une erreur est survenu ");

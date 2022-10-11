@@ -31,6 +31,10 @@ export class ProjectService {
     return this.http.get<any>(environment.hostUrl + `/projects/photos/names/`+idClient);
   }
 
+  getAllPhotosByIdClient(idClient: String): any {
+    return this.http.get<any>(environment.hostUrl + `/projects/images/all/`+idClient);
+  }
+
   addImages(formData: FormData,idClient: String ): any {
     return this.http.post<any>(environment.hostUrl + `/projects/addImg/`+idClient,formData);
   }

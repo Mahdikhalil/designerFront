@@ -17,9 +17,7 @@ export class PhotosStepComponent implements OnInit {
   @Output() goNext = new EventEmitter();
 
 
-  nameOfPhotos: Array<string>;
-
-
+  photos: Array<string>;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -29,8 +27,8 @@ export class PhotosStepComponent implements OnInit {
   ngOnInit(): void {
 
     this.projectService.idClient$.subscribe(idClient => {
-      this.projectService.getAllPhotoNamesByIdClient(idClient).subscribe(photos => {
-        this.nameOfPhotos = photos;
+      this.projectService.getAllPhotosByIdClient(idClient).subscribe(photos => {
+        this.photos = photos;
       });
     });
 
@@ -52,4 +50,5 @@ export class PhotosStepComponent implements OnInit {
   next() {
     this.goNext.emit(true);
   }
+
 }
