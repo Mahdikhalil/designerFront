@@ -27,7 +27,7 @@ export class PhotosStepComponent implements OnInit {
   ngOnInit(): void {
 
     this.projectService.idClient$.subscribe(idClient => {
-      this.projectService.getAllPhotosByIdClient(idClient).subscribe(photos => {
+      this.projectService.getAllPhotosByIdClient(idClient,false).subscribe(photos => {
         this.photos = photos;
       });
     });

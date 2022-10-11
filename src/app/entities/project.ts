@@ -6,6 +6,7 @@ export class Project {
   clientName: string;
   frontLength: string;
   frontHeight: string;
+  schemaOfPrincipPhoto: string;
 
   photosComment: Map<string, string>;
 

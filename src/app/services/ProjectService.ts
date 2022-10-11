@@ -31,8 +31,8 @@ export class ProjectService {
     return this.http.get<any>(environment.hostUrl + `/projects/photos/names/`+idClient);
   }
 
-  getAllPhotosByIdClient(idClient: String): any {
-    return this.http.get<any>(environment.hostUrl + `/projects/images/all/`+idClient);
+  getAllPhotosByIdClient(idClient: String,isAccueilPhoto:boolean): any {
+    return this.http.get<any>(environment.hostUrl + `/projects/images/all/`+idClient+`/accueil/photo/`+isAccueilPhoto);
   }
 
   addImages(formData: FormData,idClient: String ): any {

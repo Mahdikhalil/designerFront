@@ -14,6 +14,11 @@ export class InformationStepComponent implements OnInit {
   @Output() firstIsDone = new EventEmitter();
 
   informationForm: FormGroup;
+  imgURL: any;
+  userFile;
+  public imagePath;
+  message: string;
+  idClient: string;
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
@@ -26,14 +31,42 @@ export class InformationStepComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
+    // this.projectService.getAllPhotosByIdClient(this.idClient, true).subscribe(photos => {
+    //   console.log(photos + "aaaaaaaaaaaa");
+    //   this.imgURL = photos[0];
+    // });
+
+
     this.informationForm = this.formBuilder.group({
       idClient: [],
       adresse: [],
       clientName: [],
       frontLength: [],
       frontHeight: [],
+      file: [],
     });
   }
+
+
+  onSelectFile(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.userFile = file;
+      var mimeType = event.target.files[0].type;
+      if (mimeType.match(/image\/*/) == null) {
+        this.message = "Only images are supported.";
+        return;
+      }
+      var reader = new FileReader();
+
+      this.imagePath = file;
+      reader.readAsDataURL(file);
+      reader.onload = (_event) => {
+        this.imgURL = reader.result;
+      }
+    }
+  }
+
 
   next() {
 
@@ -43,15 +76,24 @@ export class InformationStepComponent implements OnInit {
     project.clientName = this.informationForm.get('clientName').value;
     project.frontHeight = this.informationForm.get('frontHeight').value;
     project.frontLength = this.informationForm.get('frontLength').value;
+    const formData = new FormData();
+    formData.append('file', this.userFile);
+    formData.append('comment', "");
+    formData.append('stage', "");
+    formData.append('isPhotoAccueil', "true");
     this.projectService.saveOrUpdateProject(project).subscribe(ok => {
-    },response =>{
-      if(response.status == 200){
-        this.firstIsDone.emit(this.informationForm.get('idClient').value);
-      }else{
+    }, response => {
+      if (response.status == 200) {
+        this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
+        });
+        this.idClient = this.informationForm.get('idClient').value
+        this.firstIsDone.emit(this.idClient);
+      } else {
         alert("Nom du projet existe déja ");
       }
     });
 
   }
+
 
 }

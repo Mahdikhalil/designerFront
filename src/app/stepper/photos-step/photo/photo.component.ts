@@ -52,8 +52,9 @@ export class PhotoComponent implements OnInit {
   addImages() {
     const formData = new FormData();
     formData.append('file', this.userFile);
-    formData.append('select',this.photoComment);
+    formData.append('comment',this.photoComment);
     formData.append('stage',"R+"+this.stageCounter);
+    formData.append('isPhotoAccueil',"false");
     this.projectService.addImages(formData, this.idClient).subscribe(ok => {
     },response =>{
       if(response.status == 200){
