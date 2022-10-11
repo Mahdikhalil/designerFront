@@ -38,7 +38,7 @@ export class ConclutionComponent implements OnInit {
         if(response.status == 200){
           this.enableDownload = true;
         }else{
-          alert("Une erreur est survenu ");
+          alert("Vous devez choisir une conclution ");
         }
       });
     });
