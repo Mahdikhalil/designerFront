@@ -1,61 +1,62 @@
-  <div class="mx-8 md:mx-24 mt-10 sm:mt-0">
-    <div class="mt-5 md:mt-0">
-      <form [formGroup]="informationForm">
-        <div class="overflow-hidden shadow sm:rounded-md">
+<div class="mx-8 md:mx-24 mt-10 sm:mt-0">
+  <div class="mt-5 md:mt-0">
+    <form [formGroup]="informationForm">
+      <div class="overflow-hidden shadow sm:rounded-md">
 
-          <div class="bg-white px-4 py-5 sm:p-6">
-            <p class="text-2xl font-bold text-center">Information générale</p>
-            <br/>
-            <div class="grid grid-cols-6 gap-6">
-              <div class="col-span-6 sm:col-span-3">
-                <label for="idClient" class="block text-sm font-medium text-gray-700">Nom du projet</label>
-                <input type="text" formControlName="idClient" id="idClient"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-              <div class="col-span-6 sm:col-span-3">
-                <label for="clientName" class="block text-sm font-medium text-gray-700"> Nom du client</label>
-                <input type="text" id="clientName" formControlName="clientName"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6">
-                <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse du chantier</label>
-                <input type="text" id="adresse" formControlName="adresse"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 lg:col-span-3">
-                <label for="frontLength" class="block text-sm font-medium text-gray-700"> Longueur de la facade</label>
-                <input type="text" id="frontLength" formControlName="frontLength"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-                <label for="frontHeight" class="block text-sm font-medium text-gray-700">hauteur de la facade</label>
-                <input type="text" id="frontHeight" formControlName="frontHeight"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="flex text-sm">
-                <label for="file-upload"
-                       class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
-                  <span> SCHEMA DE PRINCIPE </span>
-                  <input accept="image/*" (change)="onSelectFile($event)" id="file-upload" name="file-upload"
-                         type="file" class="inline-flex justify-center rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                  <img [src]="imgURL" height="600" width="600" *ngIf="imgURL">
-                </label>
-              </div>
-
+        <div class="bg-white px-4 py-5 sm:p-6">
+          <p class="text-2xl font-bold text-center">Information générale</p>
+          <br/>
+          <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-6 sm:col-span-3">
+              <label for="idClient" class="block text-sm font-medium text-gray-700">Nom du projet</label>
+              <input type="text" formControlName="idClient" id="idClient"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
-          </div>
-          <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-            <button (click)="next()"
-                    class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-              Suivant
-            </button>
+            <div class="col-span-6 sm:col-span-3">
+              <label for="clientName" class="block text-sm font-medium text-gray-700"> Nom du client</label>
+              <input type="text" id="clientName" formControlName="clientName"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6">
+              <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse du chantier</label>
+              <input type="text" id="adresse" formControlName="adresse"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 lg:col-span-3">
+              <label for="frontLength" class="block text-sm font-medium text-gray-700"> Longueur de la facade</label>
+              <input type="text" id="frontLength" formControlName="frontLength"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+              <label for="frontHeight" class="block text-sm font-medium text-gray-700">hauteur de la facade</label>
+              <input type="text" id="frontHeight" formControlName="frontHeight"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="flex text-sm">
+              <label for="file-upload"
+                     class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                <span> SCHEMA DE PRINCIPE </span>
+                <input accept="image/*" (change)="onSelectFile($event)" id="file-upload" name="file-upload"
+                       type="file"
+                       class="inline-flex justify-center rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <img [src]="imgURL" height="600" width="600" *ngIf="imgURL">
+              </label>
+            </div>
+
           </div>
         </div>
-      </form>
-    </div>
+        <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+          <button (click)="next()"
+                  class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            Suivant
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
 
