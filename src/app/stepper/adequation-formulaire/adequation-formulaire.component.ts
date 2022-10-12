@@ -69,7 +69,6 @@ export class AdequationFormulaireComponent implements OnInit {
         project.nombreTramDacces = this.adequationForm.get('nombreTramDacces').value;
         project.typeAccesPlancheurTravail = this.adequationForm.get('typeAccesPlancheurTravail').value;
         project.echafaudageApproprieAusTravauxRealiser = this.adequationForm.get('echafaudageApproprieAusTravauxRealiser').value;
-        console.log(project);
         this.projectService.saveAdequationFormulaire(project, this.idClient).subscribe(ok => {
         }, response => {
           if (response.status == 200) {
