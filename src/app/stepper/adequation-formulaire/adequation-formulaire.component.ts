@@ -15,7 +15,6 @@ export class AdequationFormulaireComponent implements OnInit {
   @Output() goNext = new EventEmitter();
   idClient: string;
   adequationForm: FormGroup;
-  surchagePonctuelleEventuelle: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,) {
