@@ -8,132 +8,142 @@
 
           <div class="grid grid-cols-6 gap-6">
             <div class="col-span-6 sm:col-span-3">
-              <label for="supportImplantation" class="block text-sm font-medium text-gray-700">Support d’implantation (*)</label>
+              <label for="supportImplantation" class="block text-sm font-medium text-gray-700">Support d’implantation
+                (*)</label>
               <input type="text" formControlName="supportImplantation" id="supportImplantation" required
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
-              <label for="calages" class="block text-sm font-medium text-gray-700"> Calages (*)</label>
-              <input id="calages" type="radio" name="calages" formControlName="calages" [value]="true">Vrai
+              <div class="col-span-6 sm:col-span-3">
+                <label for="calages" class="block text-sm font-medium text-gray-700">Calages (*)</label>
+                <input type="text" formControlName="calages" id="calages" required
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+
+              <div class="col-span-6">
+                <label for="supportAmarrage" class="block text-sm font-medium text-gray-700">Support d’amarrage
+                  (*)</label>
+                <input type="text" id="supportAmarrage" formControlName="supportAmarrage"
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+              <div class="col-span-6 lg:col-span-3">
+                <label for="nbrAncrageTheorique" class="block text-sm font-medium text-gray-700">Nombre d’ancrage
+                  théorique</label>
+                <input type="text" id="nbrAncrageTheorique" formControlName="nbrAncrageTheorique"
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+              <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+                <label for="nbrAncrageConstate" class="block text-sm font-medium text-gray-700">Nombre d’ancrage
+                  constaté</label>
+                <input type="text" id="nbrAncrageConstate" formControlName="nbrAncrageConstate"
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
             </div>
 
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-3">
+                <label for="confirmiteDispositifsRepartitionsChargeSurAppuis"
+                       class="block text-sm font-medium text-gray-700">Conformité des dispositifs de répartition des
+                  charges sur appuis</label>
+                <input type="text" formControlName="confirmiteDispositifsRepartitionsChargeSurAppuis"
+                       id="confirmiteDispositifsRepartitionsChargeSurAppuis"
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="montageParticulie" class="block text-sm font-medium text-gray-700">Montage particuliers (*)</label>
+                <input id="montageParticulie" type="radio" formControlName="montageParticulie" [value]="true">Vrai
+              </div>
+
+              <div class="col-span-6">
+                <label for="lequelsMontageParticulie" class="block text-sm font-medium text-gray-700">Si oui lesquels
+                  (*)</label>
+                <input type="text" id="lequelsMontageParticulie" formControlName="lequelsMontageParticulie"
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="presencePareGravats" class="block text-sm font-medium text-gray-700">résence de pare-gravats (*)</label>
+                <input id="presencePareGravats" type="radio" formControlName="presencePareGravats" [value]="true">Vrai
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="presenceConsoles" class="block text-sm font-medium text-gray-700">Présence de consoles (*)</label>
+                <input id="presenceConsoles" type="radio" formControlName="presenceConsoles" [value]="true">Vrai
+              </div>
 
 
-            <div class="col-span-6">
-              <label for="supportAmarrage" class="block text-sm font-medium text-gray-700">Support d’amarrage (*)</label>
-              <input type="text" id="supportAmarrage" formControlName="supportAmarrage"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 lg:col-span-3">
-              <label for="nbrAncrageTheorique" class="block text-sm font-medium text-gray-700">Nombre d’ancrage théorique</label>
-              <input type="text" id="nbrAncrageTheorique" formControlName="nbrAncrageTheorique"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-3">
+                <label for="largeurDimensions" class="block text-sm font-medium text-gray-700">Si oui, quel largeur
+                  (*)</label>
+                <input type="text" formControlName="largeurDimensions" id="largeurDimensions"
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="echaufaudages" class="block text-sm font-medium text-gray-700">Echafaudage (*)</label>
+                <input type="text" id="echaufaudages" formControlName="echaufaudages"
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
 
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="nbrAncrageConstate" class="block text-sm font-medium text-gray-700">Nombre d’ancrage constaté</label>
-              <input type="text" id="nbrAncrageConstate" formControlName="nbrAncrageConstate"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div class="col-span-6 sm:col-span-3">
+                <label for="risqueElectrique" class="block text-sm font-medium text-gray-700">Risque électrique (*)</label>
+                <input id="risqueElectrique" type="radio" formControlName="risqueElectrique" [value]="true">Vrai
+              </div>
+
+              <div class="col-span-6 lg:col-span-3">
+                <label for="precautionRisqueElectrique" class="block text-sm font-medium text-gray-700">Si oui, des précautions sont-elles prises</label>
+                <input type="text" id="precautionRisqueElectrique" formControlName="precautionRisqueElectrique"
+                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="monteConformementNoticeDuFabriquant" class="block text-sm font-medium text-gray-700">L’échafaudage est monté conformément a la notice du fabriquant (*)</label>
+                <input id="monteConformementNoticeDuFabriquant" type="radio" formControlName="monteConformementNoticeDuFabriquant" [value]="true">Vrai
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="monteConformementPlanMontage" class="block text-sm font-medium text-gray-700">L’échafaudage est monté conformément au plan de montage (*)</label>
+                <input id="monteConformementPlanMontage" type="radio" formControlName="monteConformementPlanMontage" [value]="true">Vrai
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="presencePanneauxInformationChargeExploitation" class="block text-sm font-medium text-gray-700">Présence d’un panneaux d’information sur la charge d’exploitation (*)</label>
+                <input id="presencePanneauxInformationChargeExploitation" type="radio" formControlName="presencePanneauxInformationChargeExploitation" [value]="true">Vrai
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="noteCalculEtabliParPersonneCimpetente" class="block text-sm font-medium text-gray-700">Une note de calculs à été établie par une personne compétente (*)</label>
+                <input id="noteCalculEtabliParPersonneCimpetente" type="radio" formControlName="noteCalculEtabliParPersonneCimpetente" [value]="true">Vrai
+              </div>
+
             </div>
 
           </div>
+          <div class="mt-8 grid grid-cols-2 gap-x-4 ">
 
-          <div class="grid grid-cols-6 gap-6">
-            <div class="col-span-6 sm:col-span-3">
-              <label for="confirmiteDispositifsRepartitionsChargeSurAppuis" class="block text-sm font-medium text-gray-700">Conformité des dispositifs de répartition des charges sur appuis</label>
-              <input type="text" formControlName="confirmiteDispositifsRepartitionsChargeSurAppuis" id="confirmiteDispositifsRepartitionsChargeSurAppuis"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            <div>
+              <button
+                class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+                type="button" (click)="previous()">Précédent
+              </button>
             </div>
-
-
-            <div class="col-span-6 sm:col-span-3">
-              <label for="montageParticulie" class="block text-sm font-medium text-gray-700">Montage particuliers (*)</label>
-              <input type="text" id="montageParticulie" formControlName="montageParticulie"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6">
-              <label for="lequelsMontageParticulie" class="block text-sm font-medium text-gray-700">Si oui lesquels (*)</label>
-              <input type="text" id="lequelsMontageParticulie" formControlName="lequelsMontageParticulie"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6 lg:col-span-3">
-              <label for="presencePareGravats" class="block text-sm font-medium text-gray-700">Présence de pare-gravats (*)</label>
-              <input type="text" id="presencePareGravats" formControlName="presencePareGravats"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-presenceConsoles
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="presenceConsoles" class="block text-sm font-medium text-gray-700">Présence de consoles (*)</label>
-              <input type="text" id="presenceConsoles" formControlName="presenceConsoles"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-          </div>
-
-          <div class="grid grid-cols-6 gap-6">
-            <div class="col-span-6 sm:col-span-3">
-              <label for="largeurDimensions" class="block text-sm font-medium text-gray-700">Si oui, quel largeur (*)</label>
-              <input type="text" formControlName="largeurDimensions" id="largeurDimensions"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-              <label for="echaufaudages" class="block text-sm font-medium text-gray-700">Echafaudage (*)</label>
-              <input type="text" id="echaufaudages" formControlName="echaufaudages"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6">
-              <label for="risqueElectrique" class="block text-sm font-medium text-gray-700">Risque électrique (*)</label>
-              <input type="text" id="risqueElectrique" formControlName="risqueElectrique"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6 lg:col-span-3">
-              <label for="precautionRisqueElectrique" class="block text-sm font-medium text-gray-700">Si oui, des précautions sont-elles prises</label>
-              <input type="text" id="precautionRisqueElectrique" formControlName="precautionRisqueElectrique"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="monteConformementNoticeDuFabriquant" class="block text-sm font-medium text-gray-700">L’échafaudage est monté conformément a la notice du fabriquant (*)</label>
-              <input type="text" id="monteConformementNoticeDuFabriquant" formControlName="monteConformementNoticeDuFabriquant"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="monteConformementPlanMontage" class="block text-sm font-medium text-gray-700">L’échafaudage est monté conformément au plan de montage (*)</label>
-              <input type="text" id="monteConformementPlanMontage" formControlName="monteConformementPlanMontage"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="presencePanneauxInformationChargeExploitation" class="block text-sm font-medium text-gray-700">Présence d’un panneaux d’information sur la charge d’exploitation (*)</label>
-              <input type="text" id="presencePanneauxInformationChargeExploitation" formControlName="presencePanneauxInformationChargeExploitation"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="noteCalculEtabliParPersonneCimpetente" class="block text-sm font-medium text-gray-700">Une note de calculs à été établie par une personne compétente (*)</label>
-              <input type="text" id="noteCalculEtabliParPersonneCimpetente" formControlName="noteCalculEtabliParPersonneCimpetente"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            <div>
+              <button
+                class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+                type="button" (click)="next()">Suivant
+              </button>
             </div>
           </div>
-
         </div>
-        <div class="mt-8 grid grid-cols-2 gap-x-4 ">
-
-          <div>
-            <button class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="previous()">Précédent</button>
-          </div>
-          <div>
-            <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="next()">Suivant</button>
-          </div>
-        </div>
-      </div>
     </form>
   </div>
 </div>
