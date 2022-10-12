@@ -1,6 +1,6 @@
 <div class="mx-8 md:mx-24 mt-10 sm:mt-0">
   <div class="mt-5 md:mt-0">
-    <form (ngSubmit)="next()" [formGroup]="adequationForm" name="adequationForm">
+    <form [formGroup]="adequationForm" name="adequationForm">
       <div class="overflow-hidden shadow sm:rounded-md">
         <div class="bg-white px-4 py-5 sm:p-6">
           <p class="text-2xl font-bold text-center">EXAMEN D’ADÉQUATION</p>
@@ -9,14 +9,16 @@
           <div class="grid grid-cols-6 gap-6">
             <div class="col-span-6 sm:col-span-3">
               <label for="natureOfWork" class="block text-sm font-medium text-gray-700">Nature des travaux (*)</label>
-              <input type="text" formControlName="natureOfWork" id="natureOfWork"
+              <input type="text" formControlName="natureOfWork" id="natureOfWork" required
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
+
             <div class="col-span-6 sm:col-span-3">
               <label for="surchagePonctuelleEventuelle" class="block text-sm font-medium text-gray-700"> Surcharge ponctuelle éventuelle</label>
-              <input type="text" id="surchagePonctuelleEventuelle" formControlName="surchagePonctuelleEventuelle"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input id="surchagePonctuelleEventuelle" type="radio" name="surchagePonctuelleEventuelle" formControlName="surchagePonctuelleEventuelle" [value]="true">Vrai
             </div>
+
+
 
             <div class="col-span-6">
               <label for="poidsSurcharge" class="block text-sm font-medium text-gray-700">si oui quel poids</label>
@@ -109,15 +111,16 @@
           </div>
 
         </div>
-        <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-          <button type="ngSubmit" [disabled]="!adequationForm.valid"
-                  class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-            Suivant
-          </button>
+        <div class="mt-8 grid grid-cols-2 gap-x-4 ">
+
+          <div>
+            <button class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="previous()">Précédent</button>
+          </div>
+          <div>
+            <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="next()">Suivant</button>
+          </div>
         </div>
       </div>
     </form>
   </div>
 </div>
-
-

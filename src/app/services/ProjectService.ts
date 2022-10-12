@@ -38,4 +38,13 @@ export class ProjectService {
   addImages(formData: FormData,idClient: String ): any {
     return this.http.post<any>(environment.hostUrl + `/projects/addImg/`+idClient,formData);
   }
+
+  saveAdequationFormulaire(project: Project,idClient: String): any{
+    return this.http.put<any>(environment.hostUrl + `/projects/formulaire/adequation/`+idClient,project);
+  }
+
+  saveMontageInstallationFormulaire(project: Project,idClient: String): any{
+    return this.http.put<any>(environment.hostUrl + `/projects/formulaire/montage/installation/`+idClient,project);
+  }
+
 }
