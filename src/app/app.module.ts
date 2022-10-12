@@ -11,6 +11,8 @@ import {PhotosStepComponent} from './stepper/photos-step/photos-step.component';
 import { PhotoComponent } from './stepper/photos-step/photo/photo.component';
 import { FormulaireComponent } from './stepper/formulaire/formulaire.component';
 import { ConclutionComponent } from './stepper/formulaire/conclution/conclution.component';
+import { AdequationFormulaireComponent } from './stepper/adequation-formulaire/adequation-formulaire.component';
+import { MontageInstallationFormulaireComponent } from './stepper/montage-installation-formulaire/montage-installation-formulaire.component';
 
 
 
@@ -24,6 +26,8 @@ import { ConclutionComponent } from './stepper/formulaire/conclution/conclution.
     PhotoComponent,
     FormulaireComponent,
     ConclutionComponent,
+    AdequationFormulaireComponent,
+    MontageInstallationFormulaireComponent,
   ],
     imports: [
         BrowserModule,

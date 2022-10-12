@@ -42,6 +42,14 @@
   </div>
 
   <div *ngIf="step == 4">
+    <app-adequation-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-adequation-formulaire>
+  </div>
+
+  <div *ngIf="step == 5">
+    <app-montage-installation-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-montage-installation-formulaire>
+  </div>
+
+  <div *ngIf="step == 6">
     <app-conclution (goBack)="goBack($event)" (goHome)="goHome($event)"></app-conclution>
   </div>
 
