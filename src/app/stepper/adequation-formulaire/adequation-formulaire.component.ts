@@ -82,5 +82,4 @@ export class AdequationFormulaireComponent implements OnInit {
   }
 
 
-
 }

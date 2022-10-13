@@ -28,7 +28,15 @@
     <app-information-step (firstIsDone)="firstStepDone($event)"></app-information-step>
   </div>
 
-  <div *ngIf="step == 2 && !isAddPhoto">
+  <div *ngIf="step == 2">
+    <app-adequation-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-adequation-formulaire>
+  </div>
+
+  <div *ngIf="step == 3">
+    <app-montage-installation-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-montage-installation-formulaire>
+  </div>
+
+  <div *ngIf="step == 4 && !isAddPhoto">
     <app-photos-step [idClient]="idClient" (goBack)="goBack($event)"
                      (goNext)="goNext($event)" (addPhoto)="addPhoto($event)"></app-photos-step>
   </div>
@@ -37,16 +45,8 @@
     <app-photo (goBack)="goBack($event)"></app-photo>
   </div>
 
-  <div *ngIf="step == 3">
-    <app-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-formulaire>
-  </div>
-
-  <div *ngIf="step == 4">
-    <app-adequation-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-adequation-formulaire>
-  </div>
-
   <div *ngIf="step == 5">
-    <app-montage-installation-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-montage-installation-formulaire>
+    <app-formulaire (goBack)="goBack($event)" (goNext)="goNext($event)"></app-formulaire>
   </div>
 
   <div *ngIf="step == 6">
