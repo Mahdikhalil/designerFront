@@ -20,6 +20,7 @@ export class InformationStepComponent implements OnInit {
   message: string;
   idClient: string;
   project: Project = new Project();
+  photo: string;
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
@@ -46,6 +47,10 @@ export class InformationStepComponent implements OnInit {
         this.idClient = idClient;
         this.projectService.getProjectByIdClient(idClient).subscribe(project => {
           this.project = project;
+
+        });
+        this.projectService.getAllPhotosByIdClient(idClient,true).subscribe(photo => {
+          this.photo = photo[0];
         });
       }
     });
