@@ -8,6 +8,7 @@ import {Project} from "../../entities/project";
   templateUrl: './montage-installation-formulaire.component.html',
   styleUrls: ['./montage-installation-formulaire.component.css']
 })
+
 export class MontageInstallationFormulaireComponent implements OnInit {
 
   @Output() goBack = new EventEmitter();
