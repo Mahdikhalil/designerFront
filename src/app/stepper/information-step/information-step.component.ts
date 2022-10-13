@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProjectService} from '../../services/ProjectService';
 import {Project} from '../../entities/project';
 import {Router} from '@angular/router';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-information-step',
@@ -20,11 +21,12 @@ export class InformationStepComponent implements OnInit {
   message: string;
   idClient: string;
   project: Project = new Project();
-  photo: string;
+  photo: string ="";
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
-              private router: Router,) {
+              private router: Router,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -99,11 +101,12 @@ export class InformationStepComponent implements OnInit {
         if (response.status == 200) {
           if (this.userFile != null) {
             this.projectService.addImages(formData, this.idClient).subscribe(ok => {
+              this.toastr.success("Projet Modifié");
             });
           }
           this.firstIsDone.emit(this.idClient);
         } else {
-          alert("un probleme est survenu ");
+          this.toastr.error("Erreur l'or de la modification");
         }
       });
 
@@ -114,12 +117,13 @@ export class InformationStepComponent implements OnInit {
         if (response.status == 200) {
           if (this.userFile != null) {
             this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
+              this.toastr.success("Projet ajouté avec succés");
             });
           }
           this.idClient = this.informationForm.get('idClient').value
           this.firstIsDone.emit(this.idClient);
         } else {
-          alert(" Nom du projet existe déja ");
+          this.toastr.error("Nom existe déjà");
         }
       });
     }

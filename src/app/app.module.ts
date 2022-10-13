@@ -13,6 +13,8 @@ import { FormulaireComponent } from './stepper/formulaire/formulaire.component';
 import { ConclutionComponent } from './stepper/formulaire/conclution/conclution.component';
 import { AdequationFormulaireComponent } from './stepper/adequation-formulaire/adequation-formulaire.component';
 import { MontageInstallationFormulaireComponent } from './stepper/montage-installation-formulaire/montage-installation-formulaire.component';
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -35,6 +37,8 @@ import { MontageInstallationFormulaireComponent } from './stepper/montage-instal
         HttpClientModule,
         AppRoutingModule,
         ReactiveFormsModule,
+        ToastrModule.forRoot(),
+        BrowserAnimationsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

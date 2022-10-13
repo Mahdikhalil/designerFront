@@ -44,7 +44,7 @@
                        type="file"
                        class="inline-flex justify-center rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 <img [src]="imgURL" height="600" width="600" *ngIf="imgURL">
-                <img *ngIf="idClient != null && imgURL == null" [src]="photo" height="600" width="600" alt="">
+                <img *ngIf="photo !== ''" [src]="photo" height="600" width="600" alt="">
               </label>
             </div>
 
