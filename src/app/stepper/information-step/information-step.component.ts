@@ -19,6 +19,8 @@ export class InformationStepComponent implements OnInit {
   public imagePath;
   message: string;
   idClient: string;
+  idClientFromNextStep$: string;
+  project : Project;
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
@@ -31,12 +33,6 @@ export class InformationStepComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    // this.projectService.getAllPhotosByIdClient(this.idClient, true).subscribe(photos => {
-    //   console.log(photos + "aaaaaaaaaaaa");
-    //   this.imgURL = photos[0];
-    // });
-
-
     this.informationForm = this.formBuilder.group({
       idClient: [],
       adresse: [],
@@ -45,6 +41,13 @@ export class InformationStepComponent implements OnInit {
       frontHeight: [],
       file: [],
     });
+
+    this.projectService.idClientFromNextStep$.subscribe(idClient => {
+      this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+        this.project = project;
+      });
+    });
+
   }
 
 
@@ -84,8 +87,10 @@ export class InformationStepComponent implements OnInit {
     this.projectService.saveOrUpdateProject(project).subscribe(ok => {
     }, response => {
       if (response.status == 200) {
-        this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
-        });
+        if (this.userFile != null) {
+          this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
+          });
+        }
         this.idClient = this.informationForm.get('idClient').value
         this.firstIsDone.emit(this.idClient);
       } else {

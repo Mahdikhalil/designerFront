@@ -14,6 +14,7 @@ export class AdequationFormulaireComponent implements OnInit {
   @Output() goBack = new EventEmitter();
   @Output() goNext = new EventEmitter();
   idClient: string;
+  idClientFromNextStep$: string;
   adequationForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -43,6 +44,9 @@ export class AdequationFormulaireComponent implements OnInit {
   }
 
   previous() {
+    this.projectService.idClient$.subscribe(idClient => {
+      this.projectService.idClientFromNextStep$.next(idClient);
+    });
     this.goBack.emit(true);
   }
 

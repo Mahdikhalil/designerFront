@@ -11,6 +11,7 @@ import {Project} from '../entities/project';
 export class ProjectService {
 
   idClient$: BehaviorSubject<any> = new BehaviorSubject<any>(false);
+  idClientFromNextStep$: BehaviorSubject<any> = new BehaviorSubject<any>(false);
 
   constructor(private http: HttpClient
   ) {}
@@ -33,6 +34,10 @@ export class ProjectService {
 
   getAllPhotosByIdClient(idClient: String,isAccueilPhoto:boolean): any {
     return this.http.get<any>(environment.hostUrl + `/projects/images/all/`+idClient+`/accueil/photo/`+isAccueilPhoto);
+  }
+
+  getProjectByIdClient(idClient: String): any {
+    return this.http.get<any>(environment.hostUrl + `/projects/project/`+idClient);
   }
 
   addImages(formData: FormData,idClient: String ): any {
