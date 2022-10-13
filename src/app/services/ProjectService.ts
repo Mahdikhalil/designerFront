@@ -16,12 +16,16 @@ export class ProjectService {
   constructor(private http: HttpClient
   ) {}
 
-  saveOrUpdateProject(project: Project): any {
+  saveProject(project: Project): any {
     return this.http.post<any>(environment.hostUrl + `/projects/save/`,project);
   }
 
   saveFormulaire(project: Project,idClient: String): any{
     return this.http.put<any>(environment.hostUrl + `/projects/formulaire/`+idClient,project);
+  }
+
+  putFirstirstFormulaire(project: Project,idClient: String): any{
+    return this.http.put<any>(environment.hostUrl + `/projects/put/`+idClient,project);
   }
 
   saveConclution(conclution : string, idClient:string): any {

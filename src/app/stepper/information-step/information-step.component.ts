@@ -19,8 +19,7 @@ export class InformationStepComponent implements OnInit {
   public imagePath;
   message: string;
   idClient: string;
-  idClientFromNextStep$: string;
-  project : Project;
+  project: Project = new Project();
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
@@ -43,9 +42,12 @@ export class InformationStepComponent implements OnInit {
     });
 
     this.projectService.idClientFromNextStep$.subscribe(idClient => {
-      this.projectService.getProjectByIdClient(idClient).subscribe(project => {
-        this.project = project;
-      });
+      if (idClient != false) {
+        this.idClient = idClient;
+        this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+          this.project = project;
+        });
+      }
     });
 
   }
@@ -84,20 +86,53 @@ export class InformationStepComponent implements OnInit {
     formData.append('comment', "");
     formData.append('stage', "");
     formData.append('isPhotoAccueil', "true");
-    this.projectService.saveOrUpdateProject(project).subscribe(ok => {
-    }, response => {
-      if (response.status == 200) {
-        if (this.userFile != null) {
-          this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
-          });
-        }
-        this.idClient = this.informationForm.get('idClient').value
-        this.firstIsDone.emit(this.idClient);
-      } else {
-        alert("Nom du projet existe déja ");
-      }
-    });
 
+
+    if (this.idClient != null) {
+      project.idClient = this.idClient;
+      this.projectService.putFirstirstFormulaire(project, this.idClient).subscribe(ok => {
+      }, response => {
+        if (response.status == 200) {
+          if (this.userFile != null) {
+            this.projectService.addImages(formData, this.idClient).subscribe(ok => {
+            });
+          }
+          this.firstIsDone.emit(this.idClient);
+        } else {
+          alert("un probleme est survenu ");
+        }
+      });
+
+    } else {
+
+      this.projectService.saveProject(project).subscribe(ok => {
+      }, response => {
+        if (response.status == 200) {
+          if (this.userFile != null) {
+            this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
+            });
+          }
+          this.idClient = this.informationForm.get('idClient').value
+          this.firstIsDone.emit(this.idClient);
+        } else {
+          alert(" Nom du projet existe déja ");
+        }
+      });
+    }
+  }
+
+  newProject() {
+    if(this.idClient != null){
+      this.projectService.idClientFromNextStep$.next(false);
+      this.idClient = null;
+      this.project = null;
+
+      this.informationForm.get('idClient').setValue('');
+      this.informationForm.get('adresse').setValue('');
+      this.informationForm.get('clientName').setValue('');
+      this.informationForm.get('frontHeight').setValue('');
+      this.informationForm.get('frontLength').setValue('');
+    }
   }
 
 
