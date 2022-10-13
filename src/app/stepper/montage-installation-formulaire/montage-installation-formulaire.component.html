@@ -7,134 +7,158 @@
           <br/>
 
           <div class="grid grid-cols-6 gap-6">
-            <div class="col-span-6 sm:col-span-3">
-              <label for="supportImplantation" class="block text-sm font-medium text-gray-700">Support d’implantation (*)</label>
-              <input type="text" formControlName="supportImplantation" id="supportImplantation" [value]="project.supportImplantation != null ? project.supportImplantation : ''"
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="supportImplantation" class="block text-sm font-medium text-gray-700">Support d’implantation
+                (*)</label>
+              <input type="text" formControlName="supportImplantation" id="supportImplantation"
+                     [value]="project.supportImplantation != null ? project.supportImplantation : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-              <div class="col-span-6 sm:col-span-3">
-                <label for="calages" class="block text-sm font-medium text-gray-700">Calages (*)</label>
-                <input type="text" formControlName="calages" id="calages" [value]="project.calages != null ? project.calages : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-
-              <div class="col-span-6">
-                <label for="supportAmarrage" class="block text-sm font-medium text-gray-700">Support d’amarrage (*)</label>
-                <input type="text" id="supportAmarrage" formControlName="supportAmarrage"  [value]="project.supportAmarrage != null ? project.supportAmarrage : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 lg:col-span-3">
-                <label for="nbrAncrageTheorique" class="block text-sm font-medium text-gray-700">Nombre d’ancrage théorique</label>
-                <input type="text" id="nbrAncrageTheorique" formControlName="nbrAncrageTheorique" [value]="project.nbrAncrageTheorique != null ? project.nbrAncrageTheorique : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-                <label for="nbrAncrageConstate" class="block text-sm font-medium text-gray-700">Nombre d’ancrage constaté</label>
-                <input type="text" id="nbrAncrageConstate" formControlName="nbrAncrageConstate" [value]="project.nbrAncrageConstate != null ? project.nbrAncrageConstate : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="calages" class="block text-sm font-medium text-gray-700">Calages (*)</label>
+              <input type="text" formControlName="calages" id="calages"
+                     [value]="project.calages != null ? project.calages : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="grid grid-cols-6 gap-6">
-              <div class="col-span-6 sm:col-span-3">
-                <label for="confirmiteDispositifsRepartitionsChargeSurAppuis"
-                       class="block text-sm font-medium text-gray-700">Conformité des dispositifs de répartition des charges sur appuis</label>
-                <input type="text" formControlName="confirmiteDispositifsRepartitionsChargeSurAppuis"
-                       id="confirmiteDispositifsRepartitionsChargeSurAppuis" [value]="project.confirmiteDispositifsRepartitionsChargeSurAppuis != null ? project.confirmiteDispositifsRepartitionsChargeSurAppuis : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
 
-              <div class="col-span-6 sm:col-span-3">
-                <label for="montageParticulie" class="block text-sm font-medium text-gray-700">Montage particuliers (*)</label>
-                <input id="montageParticulie" type="checkbox" [checked]="project.montageParticulie == true" formControlName="montageParticulie" [value]="true">Vrai
-              </div>
-
-              <div class="col-span-6">
-                <label for="lequelsMontageParticulie" class="block text-sm font-medium text-gray-700">Si oui lesquels(*)</label>
-                <input type="text" id="lequelsMontageParticulie" formControlName="lequelsMontageParticulie" [value]="project.lequelsMontageParticulie != null ? project.lequelsMontageParticulie : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="presencePareGravats" class="block text-sm font-medium text-gray-700">Présence de pare-gravats (*)</label>
-                <input id="presencePareGravats" type="checkbox" [checked]="project.presencePareGravats == true" formControlName="presencePareGravats" [value]="true">Vrai
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="presenceConsoles" class="block text-sm font-medium text-gray-700">Présence de consoles (*)</label>
-                <input id="presenceConsoles" type="checkbox" [checked]="project.presenceConsoles == true" formControlName="presenceConsoles" [value]="true">Vrai
-              </div>
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="supportAmarrage" class="block text-sm font-medium text-gray-700">Support d’amarrage
+                (*)</label>
+              <input type="text" id="supportAmarrage" formControlName="supportAmarrage"
+                     [value]="project.supportAmarrage != null ? project.supportAmarrage : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="grid grid-cols-6 gap-6">
-              <div class="col-span-6 sm:col-span-3">
-                <label for="largeursPresenceConsoles" class="block text-sm font-medium text-gray-700">Si oui, quel largeur (*)</label>
-                <input type="text" formControlName="largeursPresenceConsoles" id="largeursPresenceConsoles" [value]="project.largeursPresenceConsoles != null ? project.largeursPresenceConsoles : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-              <div class="col-span-6 sm:col-span-3">
-                <label for="echaufaudages" class="block text-sm font-medium text-gray-700">Echafaudage (*)</label>
-                <input type="text" id="echaufaudages" formControlName="echaufaudages" [value]="project.echaufaudages != null ? project.echaufaudages : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="risqueElectrique" class="block text-sm font-medium text-gray-700">Risque électrique (*)</label>
-                <input id="risqueElectrique" type="checkbox" [checked]="project.risqueElectrique == true" formControlName="risqueElectrique" [value]="true">Vrai
-              </div>
-
-              <div class="col-span-6 lg:col-span-3">
-                <label for="precautionRisqueElectrique" class="block text-sm font-medium text-gray-700">Si oui, des précautions sont-elles prises</label>
-                <input type="text" id="precautionRisqueElectrique" formControlName="precautionRisqueElectrique" [value]="project.precautionRisqueElectrique != null ? project.precautionRisqueElectrique : ''"
-                       class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="monteConformementNoticeDuFabriquant" class="block text-sm font-medium text-gray-700">L’échafaudage est monté conformément a la notice du fabriquant (*)</label>
-                <input id="monteConformementNoticeDuFabriquant" type="checkbox" [checked]="project.monteConformementNoticeDuFabriquant == true" formControlName="monteConformementNoticeDuFabriquant" [value]="true">Vrai
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="monteConformementPlanMontage" class="block text-sm font-medium text-gray-700">L’échafaudage est monté conformément au plan de montage (*)</label>
-                <input id="monteConformementPlanMontage" type="checkbox" [checked]="project.monteConformementPlanMontage == true"  formControlName="monteConformementPlanMontage" [value]="true">Vrai
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="presencePanneauxInformationChargeExploitation" class="block text-sm font-medium text-gray-700">Présence d’un panneaux d’information sur la charge d’exploitation (*)</label>
-                <input id="presencePanneauxInformationChargeExploitation" type="checkbox" [checked]="project.presencePanneauxInformationChargeExploitation == true"  formControlName="presencePanneauxInformationChargeExploitation" [value]="true">Vrai
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="noteCalculEtabliParPersonneCimpetente" class="block text-sm font-medium text-gray-700">Une note de calculs à été établie par une personne compétente (*)</label>
-                <input id="noteCalculEtabliParPersonneCimpetente" type="checkbox" [checked]="project.noteCalculEtabliParPersonneCimpetente == true"  formControlName="noteCalculEtabliParPersonneCimpetente" [value]="true">Vrai
-              </div>
-
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="nbrAncrageTheorique" class="block text-sm font-medium text-gray-700">Nombre d’ancrage
+                théorique</label>
+              <input type="text" id="nbrAncrageTheorique" formControlName="nbrAncrageTheorique"
+                     [value]="project.nbrAncrageTheorique != null ? project.nbrAncrageTheorique : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-          </div>
-          <div class="mt-8 grid grid-cols-2 gap-x-4 ">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="nbrAncrageConstate" class="block text-sm font-medium text-gray-700">Nombre d’ancrage
+                constaté</label>
+              <input type="text" id="nbrAncrageConstate" formControlName="nbrAncrageConstate"
+                     [value]="project.nbrAncrageConstate != null ? project.nbrAncrageConstate : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
 
-            <div>
-              <button
-                class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
-                type="button" (click)="previous()">Précédent
-              </button>
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="confirmiteDispositifsRepartitionsChargeSurAppuis"
+                     class="block text-sm font-medium text-gray-700">Conformité des dispositifs de répartition des
+                charges sur appuis</label>
+              <input type="text" formControlName="confirmiteDispositifsRepartitionsChargeSurAppuis"
+                     id="confirmiteDispositifsRepartitionsChargeSurAppuis"
+                     [value]="project.confirmiteDispositifsRepartitionsChargeSurAppuis != null ? project.confirmiteDispositifsRepartitionsChargeSurAppuis : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
-            <div>
-              <button
-                class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
-                type="button" (click)="next()">Suivant
-              </button>
+
+            <div class="grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="montageParticulie" type="checkbox" [checked]="project.montageParticulie == true" class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     formControlName="montageParticulie" [value]="true">
+              <label for="montageParticulie" class="col-span-11 block text-sm font-medium text-gray-700">Montage particuliers (*)</label>
             </div>
+
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="lequelsMontageParticulie" class="block text-sm font-medium text-gray-700">Si oui
+                lesquels(*)</label>
+              <input type="text" id="lequelsMontageParticulie" formControlName="lequelsMontageParticulie"
+                     [value]="project.lequelsMontageParticulie != null ? project.lequelsMontageParticulie : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="presencePareGravats" type="checkbox" [checked]="project.presencePareGravats == true" class="col-span-1  w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     formControlName="presencePareGravats" [value]="true">
+              <label for="presencePareGravats" class="col-span-11 block text-sm font-medium text-gray-700">Présence de pare-gravats (*)</label>
+            </div>
+
+            <div class="grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="presenceConsoles" type="checkbox" [checked]="project.presenceConsoles == true" class="col-span-1  w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     formControlName="presenceConsoles" [value]="true">
+              <label for="presenceConsoles" class="col-span-11 block text-sm font-medium text-gray-700">Présence de consoles (*)</label>
+            </div>
+
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="largeursPresenceConsoles" class="block text-sm font-medium text-gray-700">Si oui, quel largeur
+                (*)</label>
+              <input type="text" formControlName="largeursPresenceConsoles" id="largeursPresenceConsoles"
+                     [value]="project.largeursPresenceConsoles != null ? project.largeursPresenceConsoles : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="echaufaudages" class="block text-sm font-medium text-gray-700">Echafaudage (*)</label>
+              <input type="text" id="echaufaudages" formControlName="echaufaudages"
+                     [value]="project.echaufaudages != null ? project.echaufaudages : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="risqueElectrique" type="checkbox" [checked]="project.risqueElectrique == true" class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     formControlName="risqueElectrique" [value]="true">
+              <label for="risqueElectrique" class="col-span-11 block text-sm font-medium text-gray-700">Risque électrique (*)</label>
+            </div>
+
+            <div class="grid-cols-12col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="precautionRisqueElectrique" class="block text-sm font-medium text-gray-700">Si oui, des
+                précautions sont-elles prises</label>
+              <input type="text" id="precautionRisqueElectrique" formControlName="precautionRisqueElectrique"
+                     [value]="project.precautionRisqueElectrique != null ? project.precautionRisqueElectrique : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+
+            <div class="grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="monteConformementNoticeDuFabriquant" type="checkbox"
+                     [checked]="project.monteConformementNoticeDuFabriquant == true" class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     formControlName="monteConformementNoticeDuFabriquant" [value]="true">
+              <label for="monteConformementNoticeDuFabriquant" class=" col-span-11 block text-sm font-medium text-gray-700">L’échafaudage
+                est monté conformément a la notice du fabriquant (*)</label>
+            </div>
+
+            <div class="grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="monteConformementPlanMontage" type="checkbox"
+                     [checked]="project.monteConformementPlanMontage == true"  class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     formControlName="monteConformementPlanMontage" [value]="true">
+              <label for="monteConformementPlanMontage" class="col-span-11 block text-sm font-medium text-gray-700">L’échafaudage est monté conformément au plan de montage (*)</label>
+            </div>
+
+            <div class="grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="presencePanneauxInformationChargeExploitation" type="checkbox"
+                     [checked]="project.presencePanneauxInformationChargeExploitation == true" class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     formControlName="presencePanneauxInformationChargeExploitation" [value]="true">
+              <label for="presencePanneauxInformationChargeExploitation" class="col-span-11 block text-sm font-medium text-gray-700">Présence d’un panneaux d’information sur la charge d’exploitation (*)</label>
+            </div>
+
+            <div class="grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="noteCalculEtabliParPersonneCimpetente" type="checkbox"
+                     [checked]="project.noteCalculEtabliParPersonneCimpetente == true" class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     formControlName="noteCalculEtabliParPersonneCimpetente" [value]="true">
+              <label for="noteCalculEtabliParPersonneCimpetente" class="col-span-11 block text-sm font-medium text-gray-700">Une note de calculs à été établie par une personne compétente (*)</label>
+            </div>
+
           </div>
         </div>
+        <div class="mt-8 grid grid-cols-2 gap-x-4 ">
+          <div>
+            <button
+              class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+              type="button" (click)="previous()">Précédent
+            </button>
+          </div>
+          <div>
+            <button
+              class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+              type="button" (click)="next()">Suivant
+            </button>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </div>

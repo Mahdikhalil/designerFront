@@ -5,114 +5,142 @@
         <div class="bg-white px-4 py-5 sm:p-6">
           <p class="text-2xl font-bold text-center">EXAMEN D’ADÉQUATION</p>
           <br/>
+
           <div class="grid grid-cols-6 gap-6">
-            <div class="col-span-6 sm:col-span-3">
+
+            <div class="col-span-6 sm:col-span-3 md:col-span-2 ">
               <label for="natureOfWork" class="block text-sm font-medium text-gray-700">Nature des travaux (*)</label>
-              <input type="text" formControlName="natureOfWork" id="natureOfWork" required [value]="project.natureOfWork != null ? project.natureOfWork : ''"
+              <input type="text" formControlName="natureOfWork" id="natureOfWork" required
+                     [value]="project.natureOfWork != null ? project.natureOfWork : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
-              <input id="surchagePonctuelleEventuelle" type="checkbox" name="surchagePonctuelleEventuelle" formControlName="surchagePonctuelleEventuelle" [value]="true" [checked]="project.surchagePonctuelleEventuelle == true"
-                     class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="surchagePonctuelleEventuelle" class="block text-sm font-medium text-gray-700"> Surcharge ponctuelle éventuelle</label>
+            <div class=" grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
+              <input id="surchagePonctuelleEventuelle" type="checkbox" name="surchagePonctuelleEventuelle"
+                     formControlName="surchagePonctuelleEventuelle" [value]="true"
+                     [checked]="project.surchagePonctuelleEventuelle == true"
+                     class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="surchagePonctuelleEventuelle" class="col-span-11 block text-sm font-medium text-gray-700"> Surcharge ponctuelle éventuelle</label>
             </div>
 
-            <div class="col-span-6">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="poidsSurcharge" class="block text-sm font-medium text-gray-700">si oui quel poids</label>
-              <input type="text" id="poidsSurcharge" formControlName="poidsSurcharge" [value]="project.poidsSurcharge != null ? project.poidsSurcharge : ''"
+              <input type="text" id="poidsSurcharge" formControlName="poidsSurcharge"
+                     [value]="project.poidsSurcharge != null ? project.poidsSurcharge : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 lg:col-span-3">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="hauteurSurcharge" class="block text-sm font-medium text-gray-700">a quel hauteur</label>
-              <input type="text" id="hauteurSurcharge" formControlName="hauteurSurcharge" [value]="project.hauteurSurcharge != null ? project.hauteurSurcharge : ''"
+              <input type="text" id="hauteurSurcharge" formControlName="hauteurSurcharge"
+                     [value]="project.hauteurSurcharge != null ? project.hauteurSurcharge : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="marqueEchaffodage" class="block text-sm font-medium text-gray-700">Marque de l'échafaudage (*)</label>
-              <input type="text" id="marqueEchaffodage" formControlName="marqueEchaffodage" [value]="project.marqueEchaffodage != null ? project.marqueEchaffodage : ''"
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="marqueEchaffodage" class="block text-sm font-medium text-gray-700">Marque de l'échafaudage
+                (*)</label>
+              <input type="text" id="marqueEchaffodage" formControlName="marqueEchaffodage"
+                     [value]="project.marqueEchaffodage != null ? project.marqueEchaffodage : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-          </div>
-
-          <div class="grid grid-cols-6 gap-6">
-            <div class="col-span-6 sm:col-span-3">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="typeEchafaudage" class="block text-sm font-medium text-gray-700">Type (*)</label>
-              <input type="text" formControlName="typeEchafaudage" id="typeEchafaudage" [value]="project.typeEchafaudage != null ? project.typeEchafaudage : ''"
+              <input type="text" formControlName="typeEchafaudage" id="typeEchafaudage"
+                     [value]="project.typeEchafaudage != null ? project.typeEchafaudage : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
-            <div class="col-span-6 sm:col-span-3">
-              <label for="classeEchaffodage" class="block text-sm font-medium text-gray-700">Classe de l'échafaudage (*)</label>
-              <input type="text" id="classeEchaffodage" formControlName="classeEchaffodage" [value]="project.classeEchaffodage != null ? project.classeEchaffodage : ''"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            </div>
-
-            <div class="col-span-6">
-              <label for="chargeAdmissibleEchafodage" class="block text-sm font-medium text-gray-700">Charges admissible (*)</label>
-              <input type="text" id="chargeAdmissibleEchafodage" formControlName="chargeAdmissibleEchafodage" [value]="project.chargeAdmissibleEchafodage != null ? project.chargeAdmissibleEchafodage : ''"
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="classeEchaffodage" class="block text-sm font-medium text-gray-700">Classe de l'échafaudage
+                (*)</label>
+              <input type="text" id="classeEchaffodage" formControlName="classeEchaffodage"
+                     [value]="project.classeEchaffodage != null ? project.classeEchaffodage : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 lg:col-span-3">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="chargeAdmissibleEchafodage" class="block text-sm font-medium text-gray-700">Charges admissible
+                (*)</label>
+              <input type="text" id="chargeAdmissibleEchafodage" formControlName="chargeAdmissibleEchafodage"
+                     [value]="project.chargeAdmissibleEchafodage != null ? project.chargeAdmissibleEchafodage : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="longueurDimensions" class="block text-sm font-medium text-gray-700">Longueur (*)</label>
-              <input type="text" id="longueurDimensions" formControlName="longueurDimensions" [value]="project.longueurDimensions != null ? project.longueurDimensions : ''"
+              <input type="text" id="longueurDimensions" formControlName="longueurDimensions"
+                     [value]="project.longueurDimensions != null ? project.longueurDimensions : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="hauteurDimensions" class="block text-sm font-medium text-gray-700">Hauteur (*)</label>
-              <input type="text" id="hauteurDimensions" formControlName="hauteurDimensions" [value]="project.hauteurDimensions != null ? project.hauteurDimensions : ''"
+              <input type="text" id="hauteurDimensions" formControlName="hauteurDimensions"
+                     [value]="project.hauteurDimensions != null ? project.hauteurDimensions : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-          </div>
-
-          <div class="grid grid-cols-6 gap-6">
-            <div class="col-span-6 sm:col-span-3">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="largeurDimensions" class="block text-sm font-medium text-gray-700">Largeur (*)</label>
-              <input type="text" formControlName="largeurDimensions" id="largeurDimensions" [value]="project.largeurDimensions != null ? project.largeurDimensions : ''"
+              <input type="text" formControlName="largeurDimensions" id="largeurDimensions"
+                     [value]="project.largeurDimensions != null ? project.largeurDimensions : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
-            <div class="col-span-6 sm:col-span-3">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="premierNiveau" class="block text-sm font-medium text-gray-700">Premier niveau à (*)</label>
-              <input type="text" id="premierNiveau" formControlName="premierNiveau" [value]="project.premierNiveau != null ? project.premierNiveau : ''"
+              <input type="text" id="premierNiveau" formControlName="premierNiveau"
+                     [value]="project.premierNiveau != null ? project.premierNiveau : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6">
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="nombreNiveau" class="block text-sm font-medium text-gray-700">Nombre de niveaux (*)</label>
-              <input type="text" id="nombreNiveau" formControlName="nombreNiveau" [value]="project.nombreNiveau != null ? project.nombreNiveau : ''"
+              <input type="text" id="nombreNiveau" formControlName="nombreNiveau"
+                     [value]="project.nombreNiveau != null ? project.nombreNiveau : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 lg:col-span-3">
-              <label for="nombreTramDacces" class="block text-sm font-medium text-gray-700">Nombre de tram d’accès (*)</label>
-              <input type="text" id="nombreTramDacces" formControlName="nombreTramDacces" [value]="project.nombreTramDacces != null ? project.nombreTramDacces : ''"
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="nombreTramDacces" class="block text-sm font-medium text-gray-700">Nombre de tram d’accès
+                (*)</label>
+              <input type="text" id="nombreTramDacces" formControlName="nombreTramDacces"
+                     [value]="project.nombreTramDacces != null ? project.nombreTramDacces : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="typeAccesPlancheurTravail" class="block text-sm font-medium text-gray-700">Type d'accès aux planchers de travail (*)</label>
-              <input type="text" id="typeAccesPlancheurTravail" formControlName="typeAccesPlancheurTravail" [value]="project.typeAccesPlancheurTravail != null ? project.typeAccesPlancheurTravail : ''"
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="typeAccesPlancheurTravail" class="block text-sm font-medium text-gray-700">Type d'accès aux
+                planchers de travail (*)</label>
+              <input type="text" id="typeAccesPlancheurTravail" formControlName="typeAccesPlancheurTravail"
+                     [value]="project.typeAccesPlancheurTravail != null ? project.typeAccesPlancheurTravail : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
-            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-              <label for="echafaudageApproprieAusTravauxRealiser" class="block text-sm font-medium text-gray-700">L’échafaudage est approprié aux travaux a réaliser (*)</label>
-              <input type="text" id="echafaudageApproprieAusTravauxRealiser" formControlName="echafaudageApproprieAusTravauxRealiser" [value]="project.echafaudageApproprieAusTravauxRealiser != null ? project.echafaudageApproprieAusTravauxRealiser : ''"
+            <div class="col-span-6 sm:col-span-3 md:col-span-2">
+              <label for="echafaudageApproprieAusTravauxRealiser" class="block text-sm font-medium text-gray-700">L’échafaudage
+                est approprié aux travaux a réaliser (*)</label>
+              <input type="text" id="echafaudageApproprieAusTravauxRealiser"
+                     formControlName="echafaudageApproprieAusTravauxRealiser"
+                     [value]="project.echafaudageApproprieAusTravauxRealiser != null ? project.echafaudageApproprieAusTravauxRealiser : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
+
           </div>
-        </div>
-        <div class="mt-8 grid grid-cols-2 gap-x-4 ">
-          <div>
-            <button class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="previous()">Précédent</button>
-          </div>
-          <div>
-            <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="next()">Suivant</button>
+
+          <div class="grid grid-cols-8 mt-4">
+            <div class="col-span-4 sm:col-span-4 md:col-span-4">
+              <button
+                class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+                type="button" (click)="previous()">Précédent
+              </button>
+            </div>
+            <div class="col-span-4 sm:col-span-4 md:col-span-4">
+              <button
+                class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+                type="button" (click)="next()">Suivant
+              </button>
+            </div>
           </div>
         </div>
       </div>

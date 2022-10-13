@@ -21,6 +21,7 @@ export class PhotoComponent implements OnInit {
   stageCounter : number = 0;
 
   constructor(private projectService: ProjectService,
+              private toaster: ToastrService,
               ) {
   }
 
@@ -60,9 +61,9 @@ export class PhotoComponent implements OnInit {
     },response =>{
       if(response.status == 200){
         this.imgURL = null;
-        confirm("Image sauvegarder ");
+        this.toaster.success("Image sauvegarder ");
       }else{
-        alert("Une erreur est survenu ");
+        this.toaster.error("Ca doit être une Image ");
       }
     });
   }

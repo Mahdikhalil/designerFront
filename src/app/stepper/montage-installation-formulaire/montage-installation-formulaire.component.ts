@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../services/ProjectService";
 import {Project} from "../../entities/project";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-montage-installation-formulaire',
@@ -19,7 +20,8 @@ export class MontageInstallationFormulaireComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-              private projectService: ProjectService,) {
+              private projectService: ProjectService,
+              private toaster: ToastrService,) {
   }
 
   ngOnInit(): void {
@@ -85,7 +87,7 @@ export class MontageInstallationFormulaireComponent implements OnInit {
 
   next() {
     if (!this.montageInstallationForm.valid) {
-      alert("Champs obligatoires (*) ");
+      this.toaster.warning("Champs obligatoires (*) ");
     } else {
       this.projectService.idClient$.subscribe(idClient => {
         this.idClient = idClient;
@@ -113,7 +115,7 @@ export class MontageInstallationFormulaireComponent implements OnInit {
           if (response.status == 200) {
             this.goNext.emit(true);
           } else {
-            alert("Une erreur est survenu ");
+            this.toaster.error("Une erreur est survenu ");
           }
         });
       });
