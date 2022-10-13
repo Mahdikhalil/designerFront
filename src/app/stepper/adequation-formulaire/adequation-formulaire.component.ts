@@ -14,8 +14,9 @@ export class AdequationFormulaireComponent implements OnInit {
   @Output() goBack = new EventEmitter();
   @Output() goNext = new EventEmitter();
   idClient: string;
-  idClientFromNextStep$: string;
   adequationForm: FormGroup;
+  project: Project = new Project();
+
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,) {
@@ -41,6 +42,16 @@ export class AdequationFormulaireComponent implements OnInit {
       echafaudageApproprieAusTravauxRealiser: ['', [Validators.required]],
 
     });
+
+    this.projectService.idClient$.subscribe(idClient => {
+      this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+        this.project = project;
+        this.settingsValues();
+      });
+    });
+
+
+
   }
 
   previous() {
@@ -50,7 +61,29 @@ export class AdequationFormulaireComponent implements OnInit {
     this.goBack.emit(true);
   }
 
+  settingsValues(){
+    if(this.project != null){
+      this.adequationForm.get('natureOfWork').setValue(this.project.natureOfWork);
+      this.adequationForm.get('surchagePonctuelleEventuelle').setValue(this.project.surchagePonctuelleEventuelle);
+      this.adequationForm.get('poidsSurcharge').setValue(this.project.poidsSurcharge);
+      this.adequationForm.get('hauteurSurcharge').setValue(this.project.hauteurSurcharge);
+      this.adequationForm.get('marqueEchaffodage').setValue(this.project.marqueEchaffodage);
+      this.adequationForm.get('typeEchafaudage').setValue(this.project.typeEchafaudage);
+      this.adequationForm.get('classeEchaffodage').setValue(this.project.classeEchaffodage);
+      this.adequationForm.get('chargeAdmissibleEchafodage').setValue(this.project.chargeAdmissibleEchafodage);
+      this.adequationForm.get('longueurDimensions').setValue(this.project.longueurDimensions);
+      this.adequationForm.get('hauteurDimensions').setValue(this.project.hauteurDimensions);
+      this.adequationForm.get('largeurDimensions').setValue(this.project.largeurDimensions);
+      this.adequationForm.get('premierNiveau').setValue(this.project.premierNiveau);
+      this.adequationForm.get('nombreNiveau').setValue(this.project.nombreNiveau);
+      this.adequationForm.get('nombreTramDacces').setValue(this.project.nombreTramDacces);
+      this.adequationForm.get('typeAccesPlancheurTravail').setValue(this.project.typeAccesPlancheurTravail);
+      this.adequationForm.get('echafaudageApproprieAusTravauxRealiser').setValue(this.project.echafaudageApproprieAusTravauxRealiser);
+    }
+  }
+
   next() {
+    console.table(this.adequationForm.value);
     if (!this.adequationForm.valid) {
       alert("Champs obligatoires (*) ");
     } else {

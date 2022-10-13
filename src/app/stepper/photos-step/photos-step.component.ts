@@ -35,7 +35,6 @@ export class PhotosStepComponent implements OnInit {
     if(!(localStorage.getItem("token") === "true"))
       this.router.navigate(['/login']);
 
-
   }
 
   addPhotos() {

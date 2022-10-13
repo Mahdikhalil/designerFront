@@ -10,37 +10,44 @@
 
             <div class="col-span-6 sm:col-span-3">
               <label for="implantation" class="block text-sm font-medium text-gray-700">Implantation</label>
-              <input type="text" formControlName="implantation" id="implantation" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input type="text" formControlName="implantation" id="implantation" [value]="project.implantation != null ? project.implantation : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label for="appuisAndCalages" class="block text-sm font-medium text-gray-700"> Appuis et Calages</label>
-              <input type="text"  id="appuisAndCalages" formControlName="appuisAndCalages" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input type="text"  id="appuisAndCalages" formControlName="appuisAndCalages"  [value]="project.appuisAndCalages != null ? project.appuisAndCalages : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label for="conception" class="block text-sm font-medium text-gray-700">Conception</label>
-              <input type="text"   id="conception" formControlName="conception" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input type="text"   id="conception" formControlName="conception"  [value]="project.conception != null ? project.conception : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label for="amenagements" class="block text-sm font-medium text-gray-700"> Amenagements</label>
-              <input type="text"  id="amenagements" formControlName="amenagements" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input type="text"  id="amenagements" formControlName="amenagements" [value]="project.amenagements != null ? project.amenagements : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label for="chargement" class="block text-sm font-medium text-gray-700">Chargement</label>
-              <input type="text" id="chargement"  formControlName="chargement" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input type="text" id="chargement"  formControlName="chargement" [value]="project.chargement != null ? project.chargement : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label for="stabilite" class="block text-sm font-medium text-gray-700">Stabilite</label>
-              <input type="text" id="stabilite"  formControlName="stabilite" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input type="text" id="stabilite"  formControlName="stabilite" [value]="project.stabilite != null ? project.stabilite : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
             <div class="col-span-6">
               <label for="comment" class="block text-sm font-medium text-gray-700">Commentaire</label>
-              <input type="text" id="comment"  formControlName="comment" class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input type="text" id="comment"  formControlName="comment" [value]="project.comment != null ? project.comment : ''"
+                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
           </div>
         </div>

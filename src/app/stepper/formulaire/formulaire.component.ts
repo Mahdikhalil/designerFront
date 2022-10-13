@@ -17,10 +17,11 @@ export class FormulaireComponent implements OnInit {
 
   idClient: string;
   formulaireForm: FormGroup;
+  project: Project = new Project();
+
 
   constructor(private projectService: ProjectService,
               private formBuilder: FormBuilder,
-              private router: Router,
   ) {
   }
 
@@ -38,6 +39,12 @@ export class FormulaireComponent implements OnInit {
       chargement: [],
       stabilite: [],
       comment: [],
+    });
+
+    this.projectService.idClient$.subscribe(idClient => {
+      this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+        this.project = project;
+      });
     });
 
   }
@@ -58,10 +65,10 @@ export class FormulaireComponent implements OnInit {
       project.stabilite = this.formulaireForm.get('stabilite').value;
       project.comment = this.formulaireForm.get('comment').value;
       this.projectService.saveFormulaire(project, this.idClient).subscribe(ok => {
-      },response =>{
-        if(response.status == 200){
+      }, response => {
+        if (response.status == 200) {
           this.goNext.emit(true);
-        }else{
+        } else {
           alert("Une erreur est survenu ");
         }
       });

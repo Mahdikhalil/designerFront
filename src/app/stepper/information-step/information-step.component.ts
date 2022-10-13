@@ -47,9 +47,8 @@ export class InformationStepComponent implements OnInit {
         this.idClient = idClient;
         this.projectService.getProjectByIdClient(idClient).subscribe(project => {
           this.project = project;
-
         });
-        this.projectService.getAllPhotosByIdClient(idClient,true).subscribe(photo => {
+        this.projectService.getAllPhotosByIdClient(idClient, true).subscribe(photo => {
           this.photo = photo[0];
         });
       }
@@ -127,7 +126,7 @@ export class InformationStepComponent implements OnInit {
   }
 
   newProject() {
-    if(this.idClient != null){
+    if (this.idClient != null) {
       this.projectService.idClientFromNextStep$.next(false);
       this.idClient = null;
       this.project = null;

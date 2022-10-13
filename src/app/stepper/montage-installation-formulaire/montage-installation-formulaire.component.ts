@@ -15,6 +15,8 @@ export class MontageInstallationFormulaireComponent implements OnInit {
   @Output() goNext = new EventEmitter();
   idClient: string;
   montageInstallationForm: FormGroup;
+  project: Project = new Project();
+
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,) {
@@ -28,7 +30,7 @@ export class MontageInstallationFormulaireComponent implements OnInit {
       nbrAncrageTheorique: [''],
       nbrAncrageConstate: [''],
       confirmiteDispositifsRepartitionsChargeSurAppuis: [''],
-      montageParticulie:[false],
+      montageParticulie: [false],
       lequelsMontageParticulie: ['', [Validators.required]],
       presencePareGravats: [false],
       presenceConsoles: [false],
@@ -42,7 +44,40 @@ export class MontageInstallationFormulaireComponent implements OnInit {
       noteCalculEtabliParPersonneCimpetente: [false],
 
     });
+
+    this.projectService.idClient$.subscribe(idClient => {
+      this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+        this.project = project;
+        this.settingsValues();
+      });
+    });
+
   }
+
+
+  settingsValues(){
+    if(this.project != null){
+      this.montageInstallationForm.get('supportImplantation').setValue(this.project.supportImplantation);
+      this.montageInstallationForm.get('calages').setValue(this.project.calages);
+      this.montageInstallationForm.get('supportAmarrage').setValue(this.project.supportAmarrage);
+      this.montageInstallationForm.get('nbrAncrageTheorique').setValue(this.project.nbrAncrageTheorique);
+      this.montageInstallationForm.get('nbrAncrageConstate').setValue(this.project.nbrAncrageConstate);
+      this.montageInstallationForm.get('confirmiteDispositifsRepartitionsChargeSurAppuis').setValue(this.project.confirmiteDispositifsRepartitionsChargeSurAppuis);
+      this.montageInstallationForm.get('montageParticulie').setValue(this.project.montageParticulie);
+      this.montageInstallationForm.get('lequelsMontageParticulie').setValue(this.project.lequelsMontageParticulie);
+      this.montageInstallationForm.get('presencePareGravats').setValue(this.project.presencePareGravats);
+      this.montageInstallationForm.get('presenceConsoles').setValue(this.project.presenceConsoles);
+      this.montageInstallationForm.get('largeursPresenceConsoles').setValue(this.project.largeursPresenceConsoles);
+      this.montageInstallationForm.get('echaufaudages').setValue(this.project.echaufaudages);
+      this.montageInstallationForm.get('risqueElectrique').setValue(this.project.risqueElectrique);
+      this.montageInstallationForm.get('precautionRisqueElectrique').setValue(this.project.precautionRisqueElectrique);
+      this.montageInstallationForm.get('monteConformementNoticeDuFabriquant').setValue(this.project.monteConformementNoticeDuFabriquant);
+      this.montageInstallationForm.get('monteConformementPlanMontage').setValue(this.project.monteConformementPlanMontage);
+      this.montageInstallationForm.get('presencePanneauxInformationChargeExploitation').setValue(this.project.presencePanneauxInformationChargeExploitation);
+      this.montageInstallationForm.get('noteCalculEtabliParPersonneCimpetente').setValue(this.project.noteCalculEtabliParPersonneCimpetente);
+    }
+  }
+
 
   previous() {
     this.goBack.emit(true);
