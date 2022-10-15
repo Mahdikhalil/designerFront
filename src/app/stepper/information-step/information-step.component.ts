@@ -88,6 +88,7 @@ export class InformationStepComponent implements OnInit {
     project.frontHeight = this.informationForm.get('frontHeight').value;
     project.frontLength = this.informationForm.get('frontLength').value;
     const formData = new FormData();
+
     formData.append('file', this.userFile);
     formData.append('comment', "");
     formData.append('stage', "");
@@ -130,12 +131,12 @@ export class InformationStepComponent implements OnInit {
   }
 
   newProject() {
+    this.imgURL = null;
+    this.photo = "";
     if (this.idClient != null) {
       this.projectService.idClientFromNextStep$.next(false);
       this.idClient = null;
       this.project = null;
-      this.imgURL = null;
-      this.photo = "";
 
       this.informationForm.get('idClient').setValue('');
       this.informationForm.get('adresse').setValue('');
