@@ -1,3 +1,5 @@
+import {Photo} from "./photo";
+
 export class Project {
 
   id?: string;
@@ -8,7 +10,7 @@ export class Project {
   frontHeight: string;
   schemaOfPrincipPhoto: string;
 
-  photosComment: Map<string, string>;
+  photosComment: Photo;
 
   implantation: string;
   appuisAndCalages: string;

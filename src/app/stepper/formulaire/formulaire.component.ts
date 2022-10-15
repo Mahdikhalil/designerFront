@@ -88,7 +88,7 @@ export class FormulaireComponent implements OnInit, OnDestroy {
         if (response.status == 200) {
           this.goNext.emit(true);
         } else {
-          this.toastr.error("Une erreur est survenu ");
+          this.toastr.error("Une erreur est survenu ","Projet");
         }
       }));
 

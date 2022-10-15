@@ -110,12 +110,12 @@ export class InformationStepComponent implements OnInit,OnDestroy {
         if (response.status == 200) {
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
-              this.toastr.success("Projet Modifié");
+              this.toastr.success("Projet Modifié","Projet");
             }));
           }
           this.firstIsDone.emit(this.idClient);
         } else {
-          this.toastr.error("Erreur l'or de la modification");
+          this.toastr.error("Erreur l'or de la modification","Projet");
         }
       }));
 
@@ -126,13 +126,13 @@ export class InformationStepComponent implements OnInit,OnDestroy {
         if (response.status == 200) {
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
-              this.toastr.success("Projet ajouté avec succés");
+              this.toastr.success("Projet ajouté avec succés","Projet");
             }));
           }
           this.idClient = this.informationForm.get('idClient').value
           this.firstIsDone.emit(this.idClient);
         } else {
-          this.toastr.error("Nom existe déjà");
+          this.toastr.error("Nom du projet doit être unique","Projet");
         }
       }));
     }

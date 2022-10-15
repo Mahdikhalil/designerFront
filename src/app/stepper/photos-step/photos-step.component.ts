@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectService} from '../../services/ProjectService';
 import {Subscription} from "rxjs";
+import {Photo} from "../../entities/photo";
 
 
 
@@ -19,7 +20,7 @@ export class PhotosStepComponent implements OnInit, OnDestroy {
   @Output() goBack = new EventEmitter();
   @Output() goNext = new EventEmitter();
 
-
+  photosComments : Array<Photo> ;
   photos: Array<string>;
 
   constructor(private router: Router,
@@ -30,6 +31,10 @@ export class PhotosStepComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
+      this.subscriptions.add(this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+          this.photosComments = project.photosComment;
+      }));
+
       this.subscriptions.add(this.projectService.getAllPhotosByIdClient(idClient,false).subscribe(photos => {
         this.photos = photos;
       }));

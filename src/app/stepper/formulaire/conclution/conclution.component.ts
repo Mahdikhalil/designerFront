@@ -46,9 +46,9 @@ export class ConclutionComponent implements OnInit,OnDestroy {
       },response =>{
         if(response.status == 200){
           this.enableDownload = true;
-          this.toaster.success("Bravo, vous avez terminé. Vous pouvez désormais télécharger votre pdf")
+          this.toaster.success("Bravo, vous avez terminé. Vous pouvez désormais télécharger votre pdf","Projet");
         }else{
-          this.toaster.error("Vous devez choisir une conclution ");
+          this.toaster.error("Vous devez choisir une conclution ","Projet");
         }
       }));
     }));

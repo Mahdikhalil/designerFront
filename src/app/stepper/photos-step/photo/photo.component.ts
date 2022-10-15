@@ -66,9 +66,9 @@ export class PhotoComponent implements OnInit, OnDestroy {
     },response =>{
       if(response.status == 200){
         this.imgURL = null;
-        this.toaster.success("Image sauvegarder ");
+        this.toaster.success("Image sauvegarder ","Projet");
       }else{
-        this.toaster.error("Ca doit être une Image ");
+        this.toaster.error("Ca doit être une Image ","Projet");
       }
     }));
   }

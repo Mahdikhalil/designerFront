@@ -90,7 +90,7 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
 
   next() {
     if (!this.adequationForm.valid) {
-      this.toaster.warning("Champs obligatoires (*) ");
+      this.toaster.warning("Champs obligatoires (*) ","Projet");
     } else {
       this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
         this.idClient = idClient;
@@ -116,7 +116,7 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
           if (response.status == 200) {
             this.goNext.emit(true);
           } else {
-            this.toaster.error("Une erreur est survenu ");
+            this.toaster.error("Une erreur est survenu ","Projet");
           }
         }));
       }));
