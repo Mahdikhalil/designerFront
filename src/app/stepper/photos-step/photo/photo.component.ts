@@ -1,15 +1,17 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {ProjectService} from "../../../services/ProjectService";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
   styleUrls: ['./photo.component.css']
 })
-export class PhotoComponent implements OnInit {
+export class PhotoComponent implements OnInit, OnDestroy {
 
+  subscriptions: Subscription = new Subscription();
   @Output() goBack = new EventEmitter();
 
   imgURL: any;
@@ -26,11 +28,14 @@ export class PhotoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projectService.idClient$.subscribe(idPro => {
+    this.subscriptions.add(this.projectService.idClient$.subscribe(idPro => {
       this.idClient = idPro;
-    });
+    }));
   }
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
 
   onSelectFile(event) {
     if (event.target.files.length > 0) {
@@ -57,7 +62,7 @@ export class PhotoComponent implements OnInit {
     formData.append('comment',this.photoComment);
     formData.append('stage',"R+"+this.stageCounter);
     formData.append('isPhotoAccueil',"false");
-    this.projectService.addImages(formData, this.idClient).subscribe(ok => {
+    this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
     },response =>{
       if(response.status == 200){
         this.imgURL = null;
@@ -65,7 +70,7 @@ export class PhotoComponent implements OnInit {
       }else{
         this.toaster.error("Ca doit être une Image ");
       }
-    });
+    }));
   }
 
   returnToAllImages() {

@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ProjectService} from "../../../services/ProjectService";
 import {Router} from "@angular/router";
 import {environment} from "../../../../environments/environment";
 import {ToastrService} from "ngx-toastr";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -10,7 +11,10 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './conclution.component.html',
   styleUrls: ['./conclution.component.css']
 })
-export class ConclutionComponent implements OnInit {
+export class ConclutionComponent implements OnInit,OnDestroy {
+
+  subscriptions: Subscription = new Subscription();
+
 
   @Output() goBack = new EventEmitter();
   @Output() goHome = new EventEmitter();
@@ -27,15 +31,18 @@ export class ConclutionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projectService.idClient$.subscribe(idClient => {
+    this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
       this.url = environment.hostUrl + "/projects/pdf/generate/"+idClient
-    });
+    }));
   }
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
 
   finish(): any {
-    this.projectService.idClient$.subscribe(idClient => {
-      this.projectService.saveConclution(this.select, idClient).subscribe(ok => {
+    this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
+      this.subscriptions.add(this.projectService.saveConclution(this.select, idClient).subscribe(ok => {
       },response =>{
         if(response.status == 200){
           this.enableDownload = true;
@@ -43,8 +50,8 @@ export class ConclutionComponent implements OnInit {
         }else{
           this.toaster.error("Vous devez choisir une conclution ");
         }
-      });
-    });
+      }));
+    }));
   }
 
 

@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../services/ProjectService";
 import {Project} from "../../entities/project";
 import {ToastrService} from "ngx-toastr";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-montage-installation-formulaire',
@@ -10,7 +11,9 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./montage-installation-formulaire.component.css']
 })
 
-export class MontageInstallationFormulaireComponent implements OnInit {
+export class MontageInstallationFormulaireComponent implements OnInit,OnDestroy {
+
+  subscriptions: Subscription = new Subscription();
 
   @Output() goBack = new EventEmitter();
   @Output() goNext = new EventEmitter();
@@ -47,13 +50,17 @@ export class MontageInstallationFormulaireComponent implements OnInit {
 
     });
 
-    this.projectService.idClient$.subscribe(idClient => {
-      this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+    this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
+      this.subscriptions.add(this.projectService.getProjectByIdClient(idClient).subscribe(project => {
         this.project = project;
         this.settingsValues();
-      });
-    });
+      }));
+    }));
 
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
 
@@ -89,7 +96,7 @@ export class MontageInstallationFormulaireComponent implements OnInit {
     if (!this.montageInstallationForm.valid) {
       this.toaster.warning("Champs obligatoires (*) ");
     } else {
-      this.projectService.idClient$.subscribe(idClient => {
+      this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
         this.idClient = idClient;
         let project: Project = new Project();
         project.supportImplantation = this.montageInstallationForm.get('supportImplantation').value;
@@ -110,15 +117,15 @@ export class MontageInstallationFormulaireComponent implements OnInit {
         project.monteConformementPlanMontage = this.montageInstallationForm.get('monteConformementPlanMontage').value;
         project.presencePanneauxInformationChargeExploitation = this.montageInstallationForm.get('presencePanneauxInformationChargeExploitation').value;
         project.noteCalculEtabliParPersonneCimpetente = this.montageInstallationForm.get('noteCalculEtabliParPersonneCimpetente').value;
-        this.projectService.saveMontageInstallationFormulaire(project, this.idClient).subscribe(ok => {
+        this.subscriptions.add(this.projectService.saveMontageInstallationFormulaire(project, this.idClient).subscribe(ok => {
         }, response => {
           if (response.status == 200) {
             this.goNext.emit(true);
           } else {
             this.toaster.error("Une erreur est survenu ");
           }
-        });
-      });
+        }));
+      }));
     }
   }
 

@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectService} from '../../services/ProjectService';
+import {Subscription} from "rxjs";
 
 
 
@@ -9,7 +10,9 @@ import {ProjectService} from '../../services/ProjectService';
   templateUrl: './photos-step.component.html',
   styleUrls: ['./photos-step.component.css']
 })
-export class PhotosStepComponent implements OnInit {
+export class PhotosStepComponent implements OnInit, OnDestroy {
+
+  subscriptions: Subscription = new Subscription();
 
   @Input() idClient;
   @Output() addPhoto = new EventEmitter();
@@ -26,15 +29,19 @@ export class PhotosStepComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.projectService.idClient$.subscribe(idClient => {
-      this.projectService.getAllPhotosByIdClient(idClient,false).subscribe(photos => {
+    this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
+      this.subscriptions.add(this.projectService.getAllPhotosByIdClient(idClient,false).subscribe(photos => {
         this.photos = photos;
-      });
-    });
+      }));
+    }));
 
     if(!(localStorage.getItem("token") === "true"))
       this.router.navigate(['/login']);
 
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   addPhotos() {

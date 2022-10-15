@@ -1,17 +1,18 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../services/ProjectService";
 import {Project} from "../../entities/project";
 import {ToastrService} from "ngx-toastr";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-adequation-formulaire',
   templateUrl: './adequation-formulaire.component.html',
   styleUrls: ['./adequation-formulaire.component.css']
 })
-export class AdequationFormulaireComponent implements OnInit {
+export class AdequationFormulaireComponent implements OnInit, OnDestroy {
 
-
+  subscriptions: Subscription = new Subscription();
   @Output() goBack = new EventEmitter();
   @Output() goNext = new EventEmitter();
   idClient: string;
@@ -45,26 +46,29 @@ export class AdequationFormulaireComponent implements OnInit {
 
     });
 
-    this.projectService.idClient$.subscribe(idClient => {
-      this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+    this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
+      this.subscriptions.add(this.projectService.getProjectByIdClient(idClient).subscribe(project => {
         this.project = project;
         this.settingsValues();
-      });
-    });
+      }));
+    }));
 
 
+  }
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   previous() {
-    this.projectService.idClient$.subscribe(idClient => {
+    this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
       this.projectService.idClientFromNextStep$.next(idClient);
-    });
+    }));
     this.goBack.emit(true);
   }
 
-  settingsValues(){
-    if(this.project != null){
+  settingsValues() {
+    if (this.project != null) {
       this.adequationForm.get('natureOfWork').setValue(this.project.natureOfWork);
       this.adequationForm.get('surchagePonctuelleEventuelle').setValue(this.project.surchagePonctuelleEventuelle);
       this.adequationForm.get('poidsSurcharge').setValue(this.project.poidsSurcharge);
@@ -88,7 +92,7 @@ export class AdequationFormulaireComponent implements OnInit {
     if (!this.adequationForm.valid) {
       this.toaster.warning("Champs obligatoires (*) ");
     } else {
-      this.projectService.idClient$.subscribe(idClient => {
+      this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
         this.idClient = idClient;
         let project: Project = new Project();
         project.natureOfWork = this.adequationForm.get('natureOfWork').value;
@@ -107,15 +111,15 @@ export class AdequationFormulaireComponent implements OnInit {
         project.nombreTramDacces = this.adequationForm.get('nombreTramDacces').value;
         project.typeAccesPlancheurTravail = this.adequationForm.get('typeAccesPlancheurTravail').value;
         project.echafaudageApproprieAusTravauxRealiser = this.adequationForm.get('echafaudageApproprieAusTravauxRealiser').value;
-        this.projectService.saveAdequationFormulaire(project, this.idClient).subscribe(ok => {
+        this.subscriptions.add(this.projectService.saveAdequationFormulaire(project, this.idClient).subscribe(ok => {
         }, response => {
           if (response.status == 200) {
             this.goNext.emit(true);
           } else {
             this.toaster.error("Une erreur est survenu ");
           }
-        });
-      });
+        }));
+      }));
     }
   }
 

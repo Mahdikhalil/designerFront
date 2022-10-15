@@ -1,18 +1,21 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProjectService} from '../../services/ProjectService';
 import {Project} from '../../entities/project';
 import {Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-information-step',
   templateUrl: './information-step.component.html',
   styleUrls: ['./information-step.component.css']
 })
-export class InformationStepComponent implements OnInit {
+export class InformationStepComponent implements OnInit,OnDestroy {
 
   @Output() firstIsDone = new EventEmitter();
+
+  subscriptions: Subscription = new Subscription();
 
   informationForm: FormGroup;
   imgURL: any;
@@ -21,12 +24,13 @@ export class InformationStepComponent implements OnInit {
   message: string;
   idClient: string;
   project: Project = new Project();
-  photo: string ="";
+  photo: string = null;
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
               private router: Router,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private ref: ChangeDetectorRef,) {
   }
 
   ngOnInit(): void {
@@ -44,18 +48,22 @@ export class InformationStepComponent implements OnInit {
       file: [],
     });
 
-    this.projectService.idClientFromNextStep$.subscribe(idClient => {
+    this.subscriptions.add(this.projectService.idClientFromNextStep$.subscribe(idClient => {
       if (idClient != false) {
         this.idClient = idClient;
-        this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+        this.subscriptions.add(this.projectService.getProjectByIdClient(idClient).subscribe(project => {
           this.project = project;
-        });
-        this.projectService.getAllPhotosByIdClient(idClient, true).subscribe(photo => {
+        }));
+        this.subscriptions.add(this.projectService.getAllPhotosByIdClient(idClient, true).subscribe(photo => {
           this.photo = photo[0];
-        });
+        }));
       }
-    });
+    }));
 
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
   }
 
 
@@ -97,52 +105,54 @@ export class InformationStepComponent implements OnInit {
 
     if (this.idClient != null) {
       project.idClient = this.idClient;
-      this.projectService.putFirstirstFormulaire(project, this.idClient).subscribe(ok => {
+      this.subscriptions.add(this.projectService.putFirstirstFormulaire(project, this.idClient).subscribe(ok => {
       }, response => {
         if (response.status == 200) {
           if (this.userFile != null) {
-            this.projectService.addImages(formData, this.idClient).subscribe(ok => {
+            this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
               this.toastr.success("Projet Modifié");
-            });
+            }));
           }
           this.firstIsDone.emit(this.idClient);
         } else {
           this.toastr.error("Erreur l'or de la modification");
         }
-      });
+      }));
 
     } else {
 
-      this.projectService.saveProject(project).subscribe(ok => {
+      this.subscriptions.add(this.projectService.saveProject(project).subscribe(ok => {
       }, response => {
         if (response.status == 200) {
           if (this.userFile != null) {
-            this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
+            this.subscriptions.add(this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
               this.toastr.success("Projet ajouté avec succés");
-            });
+            }));
           }
           this.idClient = this.informationForm.get('idClient').value
           this.firstIsDone.emit(this.idClient);
         } else {
           this.toastr.error("Nom existe déjà");
         }
-      });
+      }));
     }
   }
 
   newProject() {
+    this.informationForm.get('idClient').setValue('');
+    this.informationForm.get('adresse').setValue('');
+    this.informationForm.get('clientName').setValue('');
+    this.informationForm.get('frontHeight').setValue('');
+    this.informationForm.get('frontLength').setValue('');
     this.imgURL = null;
-    this.photo = "";
+    this.photo = null;
+    this.ref.detectChanges();
+
     if (this.idClient != null) {
       this.projectService.idClientFromNextStep$.next(false);
       this.idClient = null;
-      this.project = null;
+      this.project = new Project();
 
-      this.informationForm.get('idClient').setValue('');
-      this.informationForm.get('adresse').setValue('');
-      this.informationForm.get('clientName').setValue('');
-      this.informationForm.get('frontHeight').setValue('');
-      this.informationForm.get('frontLength').setValue('');
     }
   }
 
