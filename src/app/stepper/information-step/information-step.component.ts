@@ -134,6 +134,8 @@ export class InformationStepComponent implements OnInit {
       this.projectService.idClientFromNextStep$.next(false);
       this.idClient = null;
       this.project = null;
+      this.imgURL = null;
+      this.photo = "";
 
       this.informationForm.get('idClient').setValue('');
       this.informationForm.get('adresse').setValue('');
