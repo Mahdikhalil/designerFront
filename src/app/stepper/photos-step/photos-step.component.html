@@ -1,21 +1,40 @@
 <div>
-  <div  class="mx-12 lg:ml-96 lg:w-1/2  mt-8  md:mt-12 ">
+  <div class="mx-12 lg:ml-96 lg:w-1/2  mt-8  md:mt-12 ">
     <div class="p-12  bg-gray-100">
       <p class="text-2xl font-bold text-center">Photos</p>
       <div class="mt-4">
-        <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="addPhotos()">Prendre une photo</button>
+        <button
+          class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+          type="button" (click)="addPhotos()">Prendre une photo
+        </button>
       </div>
       <div class="px-4 pt-10 pb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <span *ngFor="let photo of photos; let i = index"><div>{{photosComments[i].stage}}<img [src]="photo" height="200" width="200" alt=""></div></span>
+        <span *ngFor="let photo of photos; let i = index">
+          <div>
+            <div *ngIf="i==0">
+            {{photosComments[i].stage}}
+          </div>
+            <div *ngIf="i>0">
+            <span *ngIf="photosComments[i-1].stage !== photosComments[i].stage">{{photosComments[i].stage}}</span>
+          </div>
+          <img [src]="photo" height="200" width="200" alt="">
+          </div>
+        </span>
       </div>
     </div>
     <div class="mt-8 grid grid-cols-2 gap-x-4 ">
 
       <div>
-        <button class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="previous()">Précédent</button>
+        <button
+          class=" w-full inline-flex rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+          type="button" (click)="previous()">Précédent
+        </button>
       </div>
       <div>
-        <button class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2" type="button" (click)="next()">Suivant</button>
+        <button
+          class="w-full  inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 justify-content-center focus:ring-offset-2"
+          type="button" (click)="next()">Suivant
+        </button>
       </div>
     </div>
   </div>
