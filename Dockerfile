@@ -14,10 +14,11 @@ RUN npm install -g @angular/cli@10.0.0
 RUN ng build --configuration=production
 
 ### STAGE 2: Run ###
-FROM nginx:1.21-alpine
+FROM nginx:1.23.1
 # copy nginx config file
-COPY nginx.conf /etc/nginx/nginx.conf
+# COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 # copy build directory
 COPY --from=build /usr/src/app/dist/login-app /usr/share/nginx/html
 # expose nginx port
-EXPOSE 80
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
