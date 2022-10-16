@@ -16,6 +16,7 @@
           </div>
             <div *ngIf="i>0">
             <span *ngIf="photosComments[i-1].stage !== photosComments[i].stage">{{photosComments[i].stage}}</span>
+            <span *ngIf="photosComments[i-1].stage === photosComments[i].stage"><br></span>
           </div>
           <img [src]="photo" height="200" width="200" alt="">
           </div>
