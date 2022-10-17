@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  hostUrl: 'https://architect-bacckend.herokuapp.com'
+  hostUrl: 'https://architect-b.herokuapp.com'
 };
