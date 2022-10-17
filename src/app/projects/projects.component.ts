@@ -50,8 +50,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   goIn(idClient: string): any {
-    // this.projectService.idClient$.next(idClient);
-    // this.router.navigate(['/stepper']);
+    this.projectService.idClientFromNextStep$.next(idClient);
+    this.router.navigate(['/stepper']);
   }
 
   delete(idClient: string) {

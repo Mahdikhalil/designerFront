@@ -56,4 +56,8 @@ export class StepperComponent implements OnInit {
   goHome($event: any) {
     this.step=1;
   }
+
+  projects() {
+    this.router.navigate(['/projects']);
+  }
 }

@@ -2,9 +2,10 @@ import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} f
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProjectService} from '../../services/ProjectService';
 import {Project} from '../../entities/project';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 import {Subscription} from "rxjs";
+import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'app-information-step',
@@ -25,6 +26,9 @@ export class InformationStepComponent implements OnInit,OnDestroy {
   idClient: string;
   project: Project = new Project();
   photo: string = null;
+
+  previousUrl: string = null;
+  currentUrl: string = null;
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
