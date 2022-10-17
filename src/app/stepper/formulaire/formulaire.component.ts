@@ -46,7 +46,9 @@ export class FormulaireComponent implements OnInit, OnDestroy {
       this.idClient = idPro;
       this.subscriptions.add(this.projectService.getProjectByIdClient(idPro).subscribe(project => {
         this.project = project;
-        this.settingsValues();
+        if(this.project.implantation != null){
+          this.settingsValues();
+        }
       }));
     }));
 

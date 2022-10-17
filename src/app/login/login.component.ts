@@ -21,14 +21,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(localStorage.getItem("token") === "true")
-      this.router.navigate(['/stepper']);
+      this.router.navigate(['/projects']);
   }
 
   handleLogin() {
     this.authService.connect(this.email, this.password).subscribe((result) => {
       if(result){
         localStorage.setItem("token","true");
-        this.router.navigate(['/stepper']);
+        this.router.navigate(['/projects']);
         this.authService.userLoggedIn$.next(result);
         this.invalidLogin = false;
         this.loginSuccess = true;

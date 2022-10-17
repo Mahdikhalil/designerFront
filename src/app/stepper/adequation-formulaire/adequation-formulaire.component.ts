@@ -49,7 +49,9 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
       this.subscriptions.add(this.projectService.getProjectByIdClient(idClient).subscribe(project => {
         this.project = project;
-        this.settingsValues();
+        if(this.project.natureOfWork != null){
+          this.settingsValues();
+        }
       }));
     }));
 

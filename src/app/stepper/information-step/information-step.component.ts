@@ -110,10 +110,18 @@ export class InformationStepComponent implements OnInit,OnDestroy {
         if (response.status == 200) {
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
-              this.toastr.success("Projet Modifié","Projet");
+
+            }, response =>{
+              if(response.status === 200){
+                this.firstIsDone.emit(this.idClient);
+                this.toastr.success("Projet ajouté avec succés","Projet");
+              }else{
+                this.toastr.error("L'image n'a pas pu être téléchargé","Projet");
+              }
             }));
+          }else{
+            this.firstIsDone.emit(this.idClient);
           }
-          this.firstIsDone.emit(this.idClient);
         } else {
           this.toastr.error("Erreur l'or de la modification","Projet");
         }
@@ -128,7 +136,6 @@ export class InformationStepComponent implements OnInit,OnDestroy {
         }else{
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
-
             }, response =>{
               if(response.status === 200){
                 this.idClient = this.informationForm.get('idClient').value;
@@ -138,6 +145,10 @@ export class InformationStepComponent implements OnInit,OnDestroy {
                 this.toastr.error("L'image n'a pas pu être téléchargé","Projet");
               }
             }));
+          }
+          else{
+            this.idClient = this.informationForm.get('idClient').value;
+            this.firstIsDone.emit(this.informationForm.get('idClient').value);
           }
         }
       }));

@@ -25,7 +25,7 @@
   </nav>
 
   <div *ngIf="step == 1">
-    <app-information-step (firstIsDone)="firstStepDone($event)"></app-information-step>
+    <app-information-step [idClient]=idClient (firstIsDone)="firstStepDone($event)"></app-information-step>
   </div>
 
   <div *ngIf="step == 2">
