@@ -104,7 +104,11 @@ export class InformationStepComponent implements OnInit,OnDestroy {
 
 
     if (this.idClient != null) {
-      project.idClient = this.idClient;
+      if(this.informationForm.get('idClient').value == null){
+        project.idClient = this.idClient;
+      }else{
+        project.idClient =this.informationForm.get('idClient').value;
+      }
       this.subscriptions.add(this.projectService.putFirstirstFormulaire(project, this.idClient).subscribe(idClient => {
       }, response => {
         if (response.status == 200) {
@@ -113,14 +117,14 @@ export class InformationStepComponent implements OnInit,OnDestroy {
 
             }, response =>{
               if(response.status === 200){
-                this.firstIsDone.emit(this.idClient);
+                this.firstIsDone.emit(this.informationForm.get('idClient').value != null ? this.informationForm.get('idClient').value :this.idClient);
                 this.toastr.success("Projet ajouté avec succés","Projet");
               }else{
                 this.toastr.error("L'image n'a pas pu être téléchargé","Projet");
               }
             }));
           }else{
-            this.firstIsDone.emit(this.idClient);
+            this.firstIsDone.emit(this.informationForm.get('idClient').value != null ? this.informationForm.get('idClient').value :this.idClient);
           }
         } else {
           this.toastr.error("Erreur l'or de la modification","Projet");
