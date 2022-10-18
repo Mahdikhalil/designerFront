@@ -1,8 +1,16 @@
-import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProjectService} from '../../services/ProjectService';
 import {Project} from '../../entities/project';
-import {NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 import {Subscription} from "rxjs";
 import {filter} from "rxjs/operators";
@@ -12,7 +20,7 @@ import {filter} from "rxjs/operators";
   templateUrl: './information-step.component.html',
   styleUrls: ['./information-step.component.css']
 })
-export class InformationStepComponent implements OnInit,OnDestroy {
+export class InformationStepComponent implements OnInit, OnDestroy {
 
   @Output() firstIsDone = new EventEmitter();
 
@@ -26,15 +34,17 @@ export class InformationStepComponent implements OnInit,OnDestroy {
   idClient: string;
   project: Project = new Project();
   photo: string = null;
+  bool: boolean;
 
-  previousUrl: string = null;
-  currentUrl: string = null;
 
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
               private router: Router,
               private toastr: ToastrService,
               private ref: ChangeDetectorRef,) {
+    this.subscriptions.add(this.projectService.newProject$.subscribe(bool => {
+      this.bool = bool;
+    }));
   }
 
   ngOnInit(): void {
@@ -52,21 +62,28 @@ export class InformationStepComponent implements OnInit,OnDestroy {
       file: [],
     });
 
-    this.subscriptions.add(this.projectService.idClientFromNextStep$.subscribe(idClient => {
-      if (idClient != false) {
-        this.idClient = idClient;
-        this.subscriptions.add(this.projectService.getProjectByIdClient(idClient).subscribe(project => {
-          this.project = project;
-        }));
-        this.subscriptions.add(this.projectService.getAllPhotosByIdClient(idClient, true).subscribe(photo => {
-          this.photo = photo[0];
-        }));
-      }
-    }));
+
+    if (!this.bool) {
+      this.subscriptions.add(this.projectService.idClientFromNextStep$.subscribe(idClient => {
+        if (idClient != false) {
+          this.idClient = idClient;
+          this.subscriptions.add(this.projectService.getProjectByIdClient(idClient).subscribe(project => {
+            this.project = project;
+          }));
+          this.subscriptions.add(this.projectService.getAllPhotosByIdClient(idClient, true).subscribe(photo => {
+            this.photo = photo[0];
+          }));
+        }
+      }));
+    } else {
+      this.newProject();
+      this.projectService.newProject$.next(false);
+    }
+
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
 
@@ -108,10 +125,10 @@ export class InformationStepComponent implements OnInit,OnDestroy {
 
 
     if (this.idClient != null) {
-      if(this.informationForm.get('idClient').value == null){
+      if (this.informationForm.get('idClient').value == null) {
         project.idClient = this.idClient;
-      }else{
-        project.idClient =this.informationForm.get('idClient').value;
+      } else {
+        project.idClient = this.informationForm.get('idClient').value;
       }
       this.subscriptions.add(this.projectService.putFirstirstFormulaire(project, this.idClient).subscribe(idClient => {
       }, response => {
@@ -119,42 +136,41 @@ export class InformationStepComponent implements OnInit,OnDestroy {
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
 
-            }, response =>{
-              if(response.status === 200){
-                this.firstIsDone.emit(this.informationForm.get('idClient').value != null ? this.informationForm.get('idClient').value :this.idClient);
-                this.toastr.success("Projet ajouté avec succés","Projet");
-              }else{
-                this.toastr.error("L'image n'a pas pu être téléchargé","Projet");
+            }, response => {
+              if (response.status === 200) {
+                this.firstIsDone.emit(this.informationForm.get('idClient').value != null ? this.informationForm.get('idClient').value : this.idClient);
+                this.toastr.success("Projet ajouté avec succés", "Projet");
+              } else {
+                this.toastr.error("L'image n'a pas pu être téléchargé", "Projet");
               }
             }));
-          }else{
-            this.firstIsDone.emit(this.informationForm.get('idClient').value != null ? this.informationForm.get('idClient').value :this.idClient);
+          } else {
+            this.firstIsDone.emit(this.informationForm.get('idClient').value != null ? this.informationForm.get('idClient').value : this.idClient);
           }
         } else {
-          this.toastr.error("Erreur l'or de la modification","Projet");
+          this.toastr.error("Erreur l'or de la modification", "Projet");
         }
       }));
 
     } else {
 
       this.subscriptions.add(this.projectService.saveProject(project).subscribe(next => {
-      },res => {
-        if(res.status !== 200){
-          this.toastr.error("Nom du projet doit être unique","Projet");
-        }else{
+      }, res => {
+        if (res.status !== 200) {
+          this.toastr.error("Nom du projet doit être unique", "Projet");
+        } else {
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
-            }, response =>{
-              if(response.status === 200){
+            }, response => {
+              if (response.status === 200) {
                 this.idClient = this.informationForm.get('idClient').value;
                 this.firstIsDone.emit(this.informationForm.get('idClient').value);
-                this.toastr.success("Projet ajouté avec succés","Projet");
-              }else{
-                this.toastr.error("L'image n'a pas pu être téléchargé","Projet");
+                this.toastr.success("Projet ajouté avec succés", "Projet");
+              } else {
+                this.toastr.error("L'image n'a pas pu être téléchargé", "Projet");
               }
             }));
-          }
-          else{
+          } else {
             this.idClient = this.informationForm.get('idClient').value;
             this.firstIsDone.emit(this.informationForm.get('idClient').value);
           }

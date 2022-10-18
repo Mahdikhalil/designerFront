@@ -11,6 +11,7 @@ export class ProjectService {
 
   idClient$: BehaviorSubject<any> = new BehaviorSubject<any>(false);
   idClientFromNextStep$: BehaviorSubject<any> = new BehaviorSubject<any>(false);
+  newProject$: BehaviorSubject<boolean> = new BehaviorSubject<any>(false);
 
   constructor(private http: HttpClient
   ) {

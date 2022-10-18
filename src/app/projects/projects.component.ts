@@ -69,6 +69,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   newProject() {
+    this.projectService.newProject$.next(true);
     this.router.navigate(['/stepper']);
   }
 }
