@@ -16,6 +16,7 @@ import { MontageInstallationFormulaireComponent } from './stepper/montage-instal
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ProjectsComponent } from './projects/projects.component';
+import { ChangeCredentialsComponent } from './change-credentials/change-credentials.component';
 
 
 
@@ -32,6 +33,7 @@ import { ProjectsComponent } from './projects/projects.component';
     AdequationFormulaireComponent,
     MontageInstallationFormulaireComponent,
     ProjectsComponent,
+    ChangeCredentialsComponent,
   ],
     imports: [
         BrowserModule,

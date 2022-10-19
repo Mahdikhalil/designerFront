@@ -72,4 +72,15 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.projectService.newProject$.next(true);
     this.router.navigate(['/stepper']);
   }
+
+  changeCredentials() {
+    this.subscriptions.add(this.authService.userLoggedIn$.subscribe(user =>{
+      if(user == false ){
+        this.toastr.info("Déconnection Automatique", "Veillez reconnecter afin de pouvoir changer votre identifiant ")
+        this.logout();
+      }else{
+        this.router.navigate(['/credentials']);
+      }
+    }));
+  }
 }

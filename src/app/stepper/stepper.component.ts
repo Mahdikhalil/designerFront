@@ -1,15 +1,19 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit, Output} from '@angular/core';
 import {AuthService} from '../services/AuthService';
 import {Router} from '@angular/router';
 import {User} from '../entities/user';
 import {ProjectService} from "../services/ProjectService";
+import {ToastrService} from "ngx-toastr";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.css']
 })
-export class StepperComponent implements OnInit {
+export class StepperComponent implements OnInit,OnDestroy {
+
+  subscriptions: Subscription = new Subscription();
 
   user:User;
   idClient: String;
@@ -18,14 +22,21 @@ export class StepperComponent implements OnInit {
 
   constructor(private router: Router,
               private authService : AuthService,
-              private projectService: ProjectService) { }
+              private projectService: ProjectService,
+              private toaster: ToastrService,) { }
+
+
 
   ngOnInit(): void {
     if(!(localStorage.getItem("token") === "true"))
       this.router.navigate(['/login']);
-    this.authService.userLoggedIn$.subscribe(user=>{
+    this.subscriptions.add(this.authService.userLoggedIn$.subscribe(user=>{
       this.user=user;
-    });
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   logout() {
@@ -59,5 +70,17 @@ export class StepperComponent implements OnInit {
 
   projects() {
     this.router.navigate(['/projects']);
+  }
+
+  changeCredentials() {
+    this.subscriptions.add(this.authService.userLoggedIn$.subscribe(user =>{
+      console.log(user);
+      if(user == false ){
+        this.toaster.info("Déconnection Automatique", "Veillez reconnecter afin de pouvoir changer votre identifiant ")
+        this.logout();
+      }else{
+        this.router.navigate(['/credentials']);
+      }
+    }));
   }
 }

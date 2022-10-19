@@ -23,6 +23,12 @@
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <button type="button"
                   class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <button type="button" (click)="changeCredentials()">Changer mon identifiant</button>
+          </button>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <button type="button"
+                  class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
             <button type="button" (click)="logout()">Déconnexion</button>
           </button>
         </div>
@@ -31,7 +37,7 @@
   </nav>
 
   <div *ngIf="step == 1">
-    <app-information-step [idClient]=idClient (firstIsDone)="firstStepDone($event)"></app-information-step>
+    <app-information-step (firstIsDone)="firstStepDone($event)"></app-information-step>
   </div>
 
   <div *ngIf="step == 2">
