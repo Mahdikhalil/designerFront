@@ -16,6 +16,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
   projects: Array<ProjectDto> = new Array<ProjectDto>();
+  tempData: Array<ProjectDto> = new Array<ProjectDto>();
   urlForPdf: string;
 
   constructor(private projectService: ProjectService,
@@ -32,6 +33,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   getData(): any {
     this.subscriptions.add(this.projectService.getAllProjectsAccueil().subscribe(projects => {
         this.projects = projects;
+        this.tempData = projects;
       }, response => {
         if (response.status !== 200) {
           this.toastr.error("Veuillez réessayer ultérieurement", "Projets");
@@ -83,4 +85,16 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       }
     }));
   }
+
+
+  filterUpdate(event) {
+    const val = event.target.value.toLowerCase();
+
+    this.projects = this.tempData.filter(item => {
+      return ( item?.id?.toString() === val || item?.idClient?.toLowerCase().includes(val)  )
+
+    })};
+
+
+
 }
