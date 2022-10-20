@@ -32,13 +32,13 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   getData(): any {
     this.subscriptions.add(this.projectService.getAllProjectsAccueil().subscribe(projects => {
-        this.projects = projects;
-        this.tempData = projects;
-      }, response => {
-        if (response.status !== 200) {
-          this.toastr.error("Veuillez réessayer ultérieurement", "Projets");
-        }
-      }));
+      this.projects = projects;
+      this.tempData = projects;
+    }, response => {
+      if (response.status !== 200) {
+        this.toastr.error("Veuillez réessayer ultérieurement", "Projets");
+      }
+    }));
   }
 
   ngOnDestroy(): void {
@@ -76,11 +76,11 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   changeCredentials() {
-    this.subscriptions.add(this.authService.userLoggedIn$.subscribe(user =>{
-      if(user == false ){
+    this.subscriptions.add(this.authService.userLoggedIn$.subscribe(user => {
+      if (user == false) {
         this.toastr.info("Déconnection Automatique", "Veillez reconnecter afin de pouvoir changer votre identifiant ")
         this.logout();
-      }else{
+      } else {
         this.router.navigate(['/credentials']);
       }
     }));
@@ -91,10 +91,10 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     const val = event.target.value.toLowerCase();
 
     this.projects = this.tempData.filter(item => {
-      return ( item?.id?.toString() === val || item?.idClient?.toLowerCase().includes(val)  )
+      return (item?.id?.toString() === val || item?.idClient?.toLowerCase().includes(val))
 
-    })};
-
+    })
+  };
 
 
 }
