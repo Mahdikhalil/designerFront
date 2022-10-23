@@ -14,6 +14,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 import {Subscription} from "rxjs";
 import {filter} from "rxjs/operators";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-information-step',
@@ -41,7 +42,8 @@ export class InformationStepComponent implements OnInit, OnDestroy {
               private projectService: ProjectService,
               private router: Router,
               private toastr: ToastrService,
-              private ref: ChangeDetectorRef,) {
+              private ref: ChangeDetectorRef,
+              private spinner: NgxSpinnerService) {
     this.subscriptions.add(this.projectService.newProject$.subscribe(bool => {
       this.bool = bool;
     }));
@@ -135,8 +137,9 @@ export class InformationStepComponent implements OnInit, OnDestroy {
         if (response.status == 200) {
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
-
+              this.spinner.show();
             }, response => {
+              this.spinner.hide();
               if (response.status === 200) {
                 this.firstIsDone.emit(this.informationForm.get('idClient').value != null ? this.informationForm.get('idClient').value : this.idClient);
                 this.toastr.success("Projet ajouté avec succés", "Projet");

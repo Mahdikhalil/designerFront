@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { StepperComponent } from './stepper/stepper.component';
 import { AppRoutingModule } from './app-routing.module';
 import { InformationStepComponent } from './stepper/information-step/information-step.component';
@@ -17,6 +17,8 @@ import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ProjectsComponent } from './projects/projects.component';
 import { ChangeCredentialsComponent } from './change-credentials/change-credentials.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import {SpinnerHttpInterceptor} from "../spinner/spinner-http.interceptor";
 
 
 
@@ -43,8 +45,13 @@ import { ChangeCredentialsComponent } from './change-credentials/change-credenti
         ReactiveFormsModule,
         ToastrModule.forRoot(),
         BrowserAnimationsModule,
-    ],
-  providers: [],
+        NgxSpinnerModule,
+    ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SpinnerHttpInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
