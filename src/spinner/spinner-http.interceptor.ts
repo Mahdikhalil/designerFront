@@ -3,10 +3,10 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {finalize} from "rxjs/operators";
+import {finalize, tap} from "rxjs/operators";
 import {NgxSpinnerService} from "ngx-spinner";
 
 @Injectable()
@@ -14,16 +14,17 @@ export class SpinnerHttpInterceptor implements HttpInterceptor {
 
     constructor(private spinner: NgxSpinnerService) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-       if(req.url.includes('/projects/addImg/')) {
-           this.spinner.show();
-       }
-           return next.handle(req).pipe(finalize(() => {
-               /** spinner ends after 5 seconds */
-               this.spinner.hide();
-           }));
+    this.spinner.show();
 
-
-    }
+    return next.handle(req)
+      .pipe(tap((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          this.spinner.hide();
+        }
+      }, (error) => {
+        this.spinner.hide();
+      }));
+  }
 }
