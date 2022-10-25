@@ -9,11 +9,11 @@ import {NgxImageCompressService} from "ngx-image-compress";
 import {take} from "rxjs/operators";
 
 // in bytes, compress images larger than 1MB
-const fileSizeMax = 1 * 1024 * 1024;
+const fileSizeMax = 10 * 1024 * 1024;
 // in pixels, compress images have the width or height larger than 1024px
 const widthHeightMax = 1024;
 const defaultWidthHeightRatio = 1;
-const defaultQualityRatio = 20;
+const defaultQualityRatio = 0.8;
 
 
 @Component({
@@ -110,10 +110,8 @@ export class InformationStepComponent implements OnInit, OnDestroy {
         const img = this.createImage(ev);
         // Choose the side (width or height) that longer than the other
         const imgWH = img.width > img.height ? img.width : img.height;
-
         // Determines the ratios to compress the image
-        let withHeightRatio =
-          imgWH > widthHeightMax
+        let withHeightRatio = imgWH > widthHeightMax
             ? widthHeightMax / imgWH
             : defaultWidthHeightRatio;
         let qualityRatio =
@@ -162,16 +160,12 @@ export class InformationStepComponent implements OnInit, OnDestroy {
         this.compress(file)
           .pipe(take(1))
           .subscribe(compressedImage => {
-            var blob = new Blob([compressedImage], {type: 'image/png'});
-            //var url = window.URL.createObjectURL(blob);
-            //window.open(url);
-            // now you can do upload the compressed image
-            this.userFile = blob;
+            var newFile = new File([compressedImage], file.name,{type :file.type});
+            this.userFile = newFile;
             console.log(this.userFile)
           });
       } else {
         this.userFile = file;
-        console.log(this.userFile)
       }
 
 
