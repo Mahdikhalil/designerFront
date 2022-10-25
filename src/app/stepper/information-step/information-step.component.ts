@@ -1,20 +1,20 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProjectService} from '../../services/ProjectService';
 import {Project} from '../../entities/project';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
-import {Subscription} from "rxjs";
-import {filter} from "rxjs/operators";
-import {NgxSpinnerService} from "ngx-spinner";
+import {Observable, Subscription} from "rxjs";
+import {NgxImageCompressService} from "ngx-image-compress";
+import {take} from "rxjs/operators";
+
+// in bytes, compress images larger than 1MB
+const fileSizeMax = 1 * 1024 * 1024;
+// in pixels, compress images have the width or height larger than 1024px
+const widthHeightMax = 1024;
+const defaultWidthHeightRatio = 1;
+const defaultQualityRatio = 20;
+
 
 @Component({
   selector: 'app-information-step',
@@ -43,11 +43,12 @@ export class InformationStepComponent implements OnInit, OnDestroy {
               private router: Router,
               private toastr: ToastrService,
               private ref: ChangeDetectorRef,
-              private spinner: NgxSpinnerService) {
+              private imageCompress: NgxImageCompressService) {
     this.subscriptions.add(this.projectService.newProject$.subscribe(bool => {
       this.bool = bool;
     }));
   }
+
 
   ngOnInit(): void {
 
@@ -90,10 +91,91 @@ export class InformationStepComponent implements OnInit, OnDestroy {
   }
 
 
+  private createImage(ev) {
+    let imageContent = ev.target.result;
+    const img = new Image();
+    img.src = imageContent;
+    return img;
+  }
+
+  compress(file: File): Observable<File> {
+    const imageType = file.type || 'image/jpeg';
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    return Observable.create((observer) => {
+      // This event is triggered each time the reading operation is successfully completed.
+      reader.onload = (ev) => {
+        // Create an html image element
+        const img = this.createImage(ev);
+        // Choose the side (width or height) that longer than the other
+        const imgWH = img.width > img.height ? img.width : img.height;
+
+        // Determines the ratios to compress the image
+        let withHeightRatio =
+          imgWH > widthHeightMax
+            ? widthHeightMax / imgWH
+            : defaultWidthHeightRatio;
+        let qualityRatio =
+          file.size > fileSizeMax
+            ? fileSizeMax / file.size
+            : defaultQualityRatio;
+
+        // Fires immediately after the browser loads the object
+        img.onload = () => {
+          const elem = document.createElement('canvas');
+          // resize width, height
+          elem.width = img.width * withHeightRatio;
+          elem.height = img.height * withHeightRatio;
+
+          const ctx = <CanvasRenderingContext2D>elem.getContext('2d');
+          ctx.drawImage(img, 0, 0, elem.width, elem.height);
+          ctx.canvas.toBlob(
+            // callback, called when blob created
+            (blob) => {
+              observer.next(
+                new File([blob], file.name, {
+                  type: imageType,
+                  lastModified: Date.now(),
+                })
+              );
+            },
+            imageType,
+            qualityRatio // reduce image quantity
+          );
+        };
+      };
+
+      // Catch errors when reading file
+      reader.onerror = (error) => observer.error(error);
+    });
+  }
+
+
   onSelectFile(event) {
     if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.userFile = file;
+      const file: File = event.target.files[0];
+
+
+      console.log(file)
+      if (file.size > 10000000) {
+        this.compress(file)
+          .pipe(take(1))
+          .subscribe(compressedImage => {
+            var blob = new Blob([compressedImage], {type: 'image/png'});
+            //var url = window.URL.createObjectURL(blob);
+            //window.open(url);
+            // now you can do upload the compressed image
+            this.userFile = blob;
+            console.log(this.userFile)
+          });
+      } else {
+        this.userFile = file;
+        console.log(this.userFile)
+      }
+
+
+
       var mimeType = event.target.files[0].type;
       if (mimeType.match(/image\/*/) == null) {
         this.message = "Only images are supported.";
@@ -137,9 +219,7 @@ export class InformationStepComponent implements OnInit, OnDestroy {
         if (response.status == 200) {
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
-              this.spinner.show();
             }, response => {
-              this.spinner.hide();
               if (response.status === 200) {
                 this.firstIsDone.emit(this.informationForm.get('idClient').value != null ? this.informationForm.get('idClient').value : this.idClient);
                 this.toastr.success("Projet ajouté avec succés", "Projet");

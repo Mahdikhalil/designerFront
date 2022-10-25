@@ -26,6 +26,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if(!(localStorage.getItem("token") === "true"))
+      this.router.navigate(['/login']);
     this.getData();
     this.urlForPdf = environment.hostUrl + "/projects/pdf/generate/"
   }

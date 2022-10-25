@@ -19,6 +19,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ChangeCredentialsComponent } from './change-credentials/change-credentials.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {SpinnerHttpInterceptor} from "../spinner/spinner-http.interceptor";
+import {NgxImageCompressService} from "ngx-image-compress";
 
 
 
@@ -47,7 +48,7 @@ import {SpinnerHttpInterceptor} from "../spinner/spinner-http.interceptor";
         BrowserAnimationsModule,
         NgxSpinnerModule,
     ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{
+  providers: [NgxImageCompressService,{
     provide: HTTP_INTERCEPTORS,
     useClass: SpinnerHttpInterceptor,
     multi: true,

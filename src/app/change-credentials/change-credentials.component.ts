@@ -29,6 +29,8 @@ export class ChangeCredentialsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if(!(localStorage.getItem("token") === "true"))
+      this.router.navigate(['/login']);
     this.subscriptions.add(this.authService.userLoggedIn$.subscribe(user => {
       if (user == false) {
         this.router.navigate(['/projects']);

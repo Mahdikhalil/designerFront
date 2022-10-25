@@ -16,13 +16,12 @@ export class SpinnerHttpInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-       if(req.url.includes('/projects/')) {
+       if(req.url.includes('/projects/addImg/')) {
            this.spinner.show();
        }
            return next.handle(req).pipe(finalize(() => {
                /** spinner ends after 5 seconds */
                this.spinner.hide();
-
            }));
 
 
