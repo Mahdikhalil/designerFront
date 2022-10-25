@@ -3,79 +3,76 @@
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="flex flex-1 items-center  sm:items-stretch sm:justify-start">
-          <div class="flex flex-shrink-0 items-center">
-            <img class=" h-8 w-auto lg:block" src="assets/avatar.svg" alt="Architect">
-          </div>
           <div class=" sm:ml-6  sm:block">
             <div class="flex space-x-4">
               <span class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                     aria-current="page">Bonjour</span>
-
             </div>
           </div>
         </div>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <button type="button"
-                  class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-            <button type="button" (click)="newProject()">Nouveau Projet</button>
-          </button>
-        </div>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <button type="button"
-                  class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-            <button type="button" (click)="changeCredentials()">Changer mon identifiant</button>
-          </button>
-        </div>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <button type="button"
-                  class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-            <button type="button" (click)="logout()">Déconnexion</button>
-          </button>
+        <div class="grid grid-cols-12">
+          <div class="col-span-4 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <button type="button"
+                    class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <button type="button" (click)="newProject()">Nouveau Projet</button>
+            </button>
+          </div>
+          <div class="col-span-4 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <button type="button"
+                    class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <button type="button" (click)="changeCredentials()">Changer mon identifiant</button>
+            </button>
+          </div>
+          <div class="col-span-4 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <button type="button"
+                    class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <button type="button" (click)="logout()">Déconnexion</button>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 
   <p class="text-2xl font-bold text-center dark:text-black mt-1">Mes projets</p>
+  <form class="mt-4">
+    <label for="default-search"
+           class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+    <div class="relative">
+      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+      <input type="input" id="default-search"
+             class="block ml-4 p-3 w-auto pl-5 w-full text-sm dark:text-black bg-gray-400 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             placeholder="Cherchez un projet ..." (keyup)="filterUpdate($event)" required>
+    </div>
+  </form>
 
-  <p *ngIf="projects.length == 0" class="text-xl font-semibold text-center dark:text-black mt-24">Vous n'avez pas encore de projet </p>
+  <p *ngIf="projects.length == 0" class="text-xl font-semibold text-center dark:text-black mt-24">Vous n'avez pas encore
+    de projet </p>
 
   <div *ngIf="projects.length > 0">
 
-    <form class="mt-4">
-      <label for="default-search"
-             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-      <div class="relative">
-        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
-               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </div>
-        <input type="search" id="default-search"
-               class="block ml-4 p-3 w-auto pl-5 w-full text-sm text-gray-900 bg-gray-400 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Cherchez un projet ..." (keyup)="filterUpdate($event)" required>
-      </div>
-    </form>
-
-
-    <div class="mx-8 md:mx-200 mt-4 sm:mt-0">
+    <div class="mx-2 md:mx-200 mt-4 sm:mt-0">
       <div class="mt-2 md:mt-0">
         <div class="overflow-x-auto relative">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table class="w-full text-sm bg-gray-800 text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-white uppercase bg-black dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="py-3 px-6 text-center">
+              <th scope="col" class="py-3 px-4 text-center">
                 Nom du projet
               </th>
-              <th scope="col" class="py-3 px-6 text-center">
+              <th scope="col" class="py-3 px-4 text-center">
                 Télécharger
               </th>
-              <th scope="col" class="py-3 px-6 text-center">
+              <th scope="col" class="py-3 px-4 text-center">
                 Modifier
               </th>
-              <th scope="col" class=" text-center py-3 px-6">
+              <th scope="col" class=" py-3 px-4 text-center">
                 Effacer
               </th>
             </tr>
