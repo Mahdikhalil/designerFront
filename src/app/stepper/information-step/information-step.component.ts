@@ -4,16 +4,9 @@ import {ProjectService} from '../../services/ProjectService';
 import {Project} from '../../entities/project';
 import {Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
-import {Observable, Subscription} from "rxjs";
-import {NgxImageCompressService} from "ngx-image-compress";
+import {Subscription} from "rxjs";
 import {take} from "rxjs/operators";
-
-// in bytes, compress images larger than 1MB
-const fileSizeMax = 10 * 1024 * 1024;
-// in pixels, compress images have the width or height larger than 1024px
-const widthHeightMax = 1024;
-const defaultWidthHeightRatio = 1;
-const defaultQualityRatio = 0.8;
+import {CompressFileService} from "../../services/compress-file.service";
 
 
 @Component({
@@ -43,7 +36,7 @@ export class InformationStepComponent implements OnInit, OnDestroy {
               private router: Router,
               private toastr: ToastrService,
               private ref: ChangeDetectorRef,
-              private imageCompress: NgxImageCompressService) {
+              private fileCompress: CompressFileService) {
     this.subscriptions.add(this.projectService.newProject$.subscribe(bool => {
       this.bool = bool;
     }));
@@ -91,84 +84,20 @@ export class InformationStepComponent implements OnInit, OnDestroy {
   }
 
 
-  private createImage(ev) {
-    let imageContent = ev.target.result;
-    const img = new Image();
-    img.src = imageContent;
-    return img;
-  }
-
-  compress(file: File): Observable<File> {
-    const imageType = file.type || 'image/jpeg';
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    return Observable.create((observer) => {
-      // This event is triggered each time the reading operation is successfully completed.
-      reader.onload = (ev) => {
-        // Create an html image element
-        const img = this.createImage(ev);
-        // Choose the side (width or height) that longer than the other
-        const imgWH = img.width > img.height ? img.width : img.height;
-        // Determines the ratios to compress the image
-        let withHeightRatio = imgWH > widthHeightMax
-            ? widthHeightMax / imgWH
-            : defaultWidthHeightRatio;
-        let qualityRatio =
-          file.size > fileSizeMax
-            ? fileSizeMax / file.size
-            : defaultQualityRatio;
-
-        // Fires immediately after the browser loads the object
-        img.onload = () => {
-          const elem = document.createElement('canvas');
-          // resize width, height
-          elem.width = img.width * withHeightRatio;
-          elem.height = img.height * withHeightRatio;
-
-          const ctx = <CanvasRenderingContext2D>elem.getContext('2d');
-          ctx.drawImage(img, 0, 0, elem.width, elem.height);
-          ctx.canvas.toBlob(
-            // callback, called when blob created
-            (blob) => {
-              observer.next(
-                new File([blob], file.name, {
-                  type: imageType,
-                  lastModified: Date.now(),
-                })
-              );
-            },
-            imageType,
-            qualityRatio // reduce image quantity
-          );
-        };
-      };
-
-      // Catch errors when reading file
-      reader.onerror = (error) => observer.error(error);
-    });
-  }
-
-
   onSelectFile(event) {
     if (event.target.files.length > 0) {
       const file: File = event.target.files[0];
 
-
-      console.log(file)
       if (file.size > 10000000) {
-        this.compress(file)
+        this.fileCompress.compress(file)
           .pipe(take(1))
           .subscribe(compressedImage => {
-            var newFile = new File([compressedImage], file.name,{type :file.type});
+            var newFile = new File([compressedImage], file.name, {type: file.type});
             this.userFile = newFile;
-            console.log(this.userFile)
           });
       } else {
         this.userFile = file;
       }
-
-
 
       var mimeType = event.target.files[0].type;
       if (mimeType.match(/image\/*/) == null) {
@@ -208,8 +137,7 @@ export class InformationStepComponent implements OnInit, OnDestroy {
       } else {
         project.idClient = this.informationForm.get('idClient').value;
       }
-      this.subscriptions.add(this.projectService.putFirstirstFormulaire(project, this.idClient).subscribe(idClient => {
-      }, response => {
+      this.subscriptions.add(this.projectService.putFirstirstFormulaire(project, this.idClient).subscribe(idClient => {}, response => {
         if (response.status == 200) {
           if (this.userFile != null) {
             this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
@@ -230,31 +158,31 @@ export class InformationStepComponent implements OnInit, OnDestroy {
       }));
 
     } else {
-
-      this.subscriptions.add(this.projectService.saveProject(project).subscribe(next => {
-      }, res => {
-        if (res.status !== 200) {
-          this.toastr.error("Nom du projet doit être unique", "Projet");
-        } else {
-          if (this.userFile != null) {
-            this.subscriptions.add(this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
-            }, response => {
-              if (response.status === 200) {
-                this.idClient = this.informationForm.get('idClient').value;
-                this.firstIsDone.emit(this.informationForm.get('idClient').value);
-                this.toastr.success("Projet ajouté avec succés", "Projet");
-              } else {
-                this.toastr.error("L'image n'a pas pu être téléchargé", "Projet");
-              }
-            }));
+      if (this.informationForm.get('idClient').value != "") {
+        this.subscriptions.add(this.projectService.saveProject(project).subscribe(next => {
+        }, res => {
+          if (res.status !== 200) {
+            this.toastr.error("Nom du projet doit être unique", "Projet");
           } else {
-            this.idClient = this.informationForm.get('idClient').value;
-            this.firstIsDone.emit(this.informationForm.get('idClient').value);
+            if (this.userFile != null) {
+              this.subscriptions.add(this.projectService.addImages(formData, this.informationForm.get('idClient').value).subscribe(ok => {
+              }, response => {
+                if (response.status === 200) {
+                  this.idClient = this.informationForm.get('idClient').value;
+                  this.firstIsDone.emit(this.informationForm.get('idClient').value);
+                  this.toastr.success("Projet ajouté avec succés", "Projet");
+                } else {
+                  this.toastr.error("L'image n'a pas pu être téléchargé", "Projet");
+                }
+              }));
+            } else {
+              this.idClient = this.informationForm.get('idClient').value;
+              this.firstIsDone.emit(this.informationForm.get('idClient').value);
+            }
           }
-        }
-      }));
+        }));
+      }
     }
-
   }
 
   newProject() {

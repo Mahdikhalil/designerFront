@@ -3,6 +3,8 @@ import {ProjectService} from "../../../services/ProjectService";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Subscription} from "rxjs";
+import {take} from "rxjs/operators";
+import {CompressFileService} from "../../../services/compress-file.service";
 
 @Component({
   selector: 'app-photo',
@@ -24,6 +26,7 @@ export class PhotoComponent implements OnInit, OnDestroy {
 
   constructor(private projectService: ProjectService,
               private toaster: ToastrService,
+              private fileCompress: CompressFileService
               ) {
   }
 
@@ -40,7 +43,16 @@ export class PhotoComponent implements OnInit, OnDestroy {
   onSelectFile(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.userFile = file;
+      if (file.size > 10000000) {
+        this.fileCompress.compress(file)
+          .pipe(take(1))
+          .subscribe(compressedImage => {
+            var newFile = new File([compressedImage], file.name,{type :file.type});
+            this.userFile = newFile;
+          });
+      } else {
+        this.userFile = file;
+      }
       var mimeType = event.target.files[0].type;
       if (mimeType.match(/image\/*/) == null) {
         this.message = "Only images are supported.";
