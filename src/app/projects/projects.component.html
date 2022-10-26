@@ -42,7 +42,7 @@
 
   <div *ngIf="tempData.length > 0">
 
-    <form class="mt-4">
+    <form class="mt-4 ml-4">
       <label for="default-search"
              class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
       <div class="relative">
@@ -54,27 +54,33 @@
           </svg>
         </div>
         <input type="input" id="default-search"
-               class="block ml-4 p-3 w-auto pl-5 w-full text-sm dark:text-black bg-gray-400 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               class="block p-3 w-auto pl-5 w-full text-sm dark:text-black bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                placeholder="Cherchez un projet ..." (keyup)="filterUpdate($event)" required>
       </div>
     </form>
 
     <div class="mx-2 md:mx-200 mt-4 sm:mt-0">
       <div class="mt-2 md:mt-0">
-        <div class="overflow-x-auto relative">
+        <div class="overflow-x-scroll relative">
           <table class="w-full text-sm bg-gray-800 text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-white uppercase bg-black dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="py-3 px-4 text-center">
-                Nom du projet
+              <th scope="col" class="py-3 px-4 text-center flex-shrink-0">
+                Reference
               </th>
-              <th scope="col" class="py-3 px-4 text-center">
+              <th scope="col" class="py-3 px-4 text-center flex-shrink-0">
+                Nom client
+              </th>
+              <th scope="col" class="py-3 px-4 text-center flex-shrink-0">
+                Adresse
+              </th>
+              <th scope="col" class="py-3 px-4 text-center flex-shrink-0">
                 Télécharger
               </th>
-              <th scope="col" class="py-3 px-4 text-center">
+              <th scope="col" class="py-3 px-4 text-center flex-shrink-0">
                 Modifier
               </th>
-              <th scope="col" class=" py-3 px-4 text-center">
+              <th scope="col" class=" py-3 px-4 text-center flex-shrink-0">
                 Effacer
               </th>
             </tr>
@@ -82,18 +88,24 @@
             <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 *ngFor='let projectDto of projects; index as i;'>
-              <th class="py-4 px-12 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
-                {{projectDto.idClient}}
-              </th>
-              <th class="text-center">
+              <td class="py-4 px-12 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center flex-shrink-0">
+                {{projectDto.id}}
+              </td>
+              <td class="py-4 px-12 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center flex-shrink-0">
+                {{projectDto.clientName}}
+              </td>
+              <td class="py-4 px-12 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center flex-shrink-0">
+                {{projectDto.adresse}}
+              </td>
+              <td class="text-center flex-shrink-0">
                 <a href="{{urlForPdf+projectDto.idClient}}" type="button"> PDF </a>
-              </th>
-              <th class="text-center">
+              </td>
+              <td class="text-center flex-shrink-0">
                 <button class="text-gray-900" type="button" (click)="goIn(projectDto.idClient)"> Accéder</button>
-              </th>
-              <th class="text-center ">
+              </td>
+              <td class="text-center flex-shrink-0">
                 <button class="text-danger" type="button" (click)="delete(projectDto.idClient)"> Supprimer</button>
-              </th>
+              </td>
             </tr>
             </tbody>
           </table>

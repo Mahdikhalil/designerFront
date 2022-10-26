@@ -53,8 +53,6 @@ export class InformationStepComponent implements OnInit, OnDestroy {
       idClient: [],
       adresse: [],
       clientName: [],
-      frontLength: [],
-      frontHeight: [],
       file: [],
     });
 
@@ -121,8 +119,6 @@ export class InformationStepComponent implements OnInit, OnDestroy {
     project.idClient = this.informationForm.get('idClient').value;
     project.adresse = this.informationForm.get('adresse').value;
     project.clientName = this.informationForm.get('clientName').value;
-    project.frontHeight = this.informationForm.get('frontHeight').value;
-    project.frontLength = this.informationForm.get('frontLength').value;
     const formData = new FormData();
 
     formData.append('file', this.userFile);
@@ -189,8 +185,6 @@ export class InformationStepComponent implements OnInit, OnDestroy {
     this.informationForm.get('idClient').setValue('');
     this.informationForm.get('adresse').setValue('');
     this.informationForm.get('clientName').setValue('');
-    this.informationForm.get('frontHeight').setValue('');
-    this.informationForm.get('frontLength').setValue('');
     this.imgURL = null;
     this.photo = null;
     this.ref.detectChanges();

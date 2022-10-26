@@ -6,8 +6,7 @@ export class Project {
   idClient: string;
   adresse: string;
   clientName: string;
-  frontLength: string;
-  frontHeight: string;
+  createdAt: string;
   schemaOfPrincipPhoto: string;
 
   photosComment: Photo;
@@ -22,6 +21,8 @@ export class Project {
 
   conclusion: string;
 
+  frontLength: string;
+  frontHeight: string;
   natureOfWork: string;
   surchagePonctuelleEventuelle:boolean;
   poidsSurcharge : string;

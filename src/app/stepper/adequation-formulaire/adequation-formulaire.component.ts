@@ -19,7 +19,6 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
   adequationForm: FormGroup;
   project: Project = new Project();
 
-
   constructor(private formBuilder: FormBuilder,
               private projectService: ProjectService,
               private toaster: ToastrService,) {
@@ -27,6 +26,8 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.adequationForm = this.formBuilder.group({
+      frontLength: [''],
+      frontHeight: [''],
       natureOfWork: ['', [Validators.required]],
       surchagePonctuelleEventuelle: [false],
       poidsSurcharge: [''],
@@ -71,6 +72,8 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
 
   settingsValues() {
     if (this.project != null) {
+      this.adequationForm.get('frontHeight').setValue(this.project.frontHeight);
+      this.adequationForm.get('frontLength').setValue(this.project.frontLength);
       this.adequationForm.get('natureOfWork').setValue(this.project.natureOfWork);
       this.adequationForm.get('surchagePonctuelleEventuelle').setValue(this.project.surchagePonctuelleEventuelle);
       this.adequationForm.get('poidsSurcharge').setValue(this.project.poidsSurcharge);
@@ -97,6 +100,8 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
       this.subscriptions.add(this.projectService.idClient$.subscribe(idClient => {
         this.idClient = idClient;
         let project: Project = new Project();
+        project.frontHeight = this.adequationForm.get('frontHeight').value;
+        project.frontLength = this.adequationForm.get('frontLength').value;
         project.natureOfWork = this.adequationForm.get('natureOfWork').value;
         project.surchagePonctuelleEventuelle = this.adequationForm.get('surchagePonctuelleEventuelle').value;
         project.poidsSurcharge = this.adequationForm.get('poidsSurcharge').value;
