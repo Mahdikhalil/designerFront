@@ -38,19 +38,23 @@
 
             <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="nbrAncrageConstate" class="block text-sm font-medium text-gray-700">Nombre d’ancrage constaté :</label>
-              <input type="text" id="nbrAncrageConstate" formControlName="nbrAncrageConstate"
+              <input disabled type="text" id="nbrAncrageConstate" formControlName="nbrAncrageConstate"
                      [value]="project.nbrAncrageConstate != null ? project.nbrAncrageConstate : ''"
                      class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
 
             <div class="col-span-6 sm:col-span-3 md:col-span-2">
               <label for="confirmiteDispositifsRepartitionsChargeSurAppuis"
-                     class="block text-sm font-medium text-gray-700">Conformité des dispositifs de répartition des charges sur appuis :</label>
-              <input type="text" formControlName="confirmiteDispositifsRepartitionsChargeSurAppuis"
-                     id="confirmiteDispositifsRepartitionsChargeSurAppuis"
-                     [value]="project.confirmiteDispositifsRepartitionsChargeSurAppuis != null ? project.confirmiteDispositifsRepartitionsChargeSurAppuis : ''"
-                     class="text-left	 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                     class="block text-sm font-medium text-gray-700">
+                <span>Conformité des dispositifs de répartition des charges sur appuis : </span>
+                <select id="confirmiteDispositifsRepartitionsChargeSurAppuis" formControlName="confirmiteDispositifsRepartitionsChargeSurAppuis"
+                        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option value="Oui">Oui</option>
+                  <option value="Non">Non</option>
+                </select>
+              </label>
             </div>
+
 
             <div class="grid grid-cols-12 col-span-6 sm:col-span-3 md:col-span-2">
               <input id="montageParticulie" type="checkbox" [checked]="project.montageParticulie == true" class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"

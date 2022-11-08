@@ -92,7 +92,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
     this.projects = this.tempData.filter(item => {
-      return (item?.id?.toString() === val || item?.idClient?.toLowerCase().includes(val))
+      return (item?.id?.toString() === val || item?.idClient?.toLowerCase().includes(val)
+        || item?.clientName?.toLowerCase().includes(val) || item?.adresse?.toLowerCase().includes(val))
 
     })
   };

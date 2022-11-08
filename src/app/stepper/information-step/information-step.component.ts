@@ -125,7 +125,7 @@ export class InformationStepComponent implements OnInit, OnDestroy {
     formData.append('comment', "");
     formData.append('stage', "");
     formData.append('isPhotoAccueil', "true");
-
+    formData.append('nbrAmmarage',"0");
 
     if (this.idClient != null) {
       if (this.informationForm.get('idClient').value == null) {

@@ -1,7 +1,12 @@
 <div class="mx-8 md:mx-24 lg:mx-96 mt-24">
   <div class="mt-5 md:mt-0">
       <div class="shadow sm:overflow-hidden sm:rounded-md">
-        <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+        <div class="space-y-6 bg-white px-4 py-1 sm:p-6">
+          <div class="grid grid-cols-8">
+            <div class="col-span-6 ">
+              <input id="nbrAmmarage" type="text" [(ngModel)]="nbrAmmarage" placeholder="Nombre d'ammarage" class="col-span-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            </div>
+          </div>
           <div>
             <p class="text-2xl font-semibold text-center">étage {{stageCounter}}</p>
             <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
@@ -12,6 +17,8 @@
                     d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+
+
                 <div class="flex text-sm text-gray-600">
                   <label for="file-upload"
                          class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
@@ -28,15 +35,42 @@
           </div>
 
           <div>
-            <label for="comments"
+            <label for="comment1"
                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
-              <span>choissisez un commentaire </span>
-              <select id="comments" [(ngModel)]="photoComment"
+              <span>choissisez </span>
+              <select id="comment1" [(ngModel)]="photoComment1"
                     class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option value="Mettre en place les lisse int.">Mettre en place les lisse int.</option>
-              <option value="Clouer les cales">Clouer les cales</option>
+              <option value="Implantation">Implantation</option>
+              <option value="Appuis">Appuis</option>
+              <option value="Conception">Conception</option>
+              <option value="Amenagement">Amenagement</option>
+              <option value="Charges">Charges</option>
+              <option value="Stabilité">Stabilité</option>
+              <option value="Planchers">Planchers</option>
+              <option value="Garde-Corps">Garde-Corps</option>
+              <option value="Protections">Protections</option>
+              <option value="Affichage">Affichage</option>
+              <option value="Etat Géneral">Etat Géneral</option>
             </select>
             </label>
+          </div>
+
+          <div>
+            <label for="comment2"
+                   class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+              <span>choissisez </span>
+              <select id="comment2" [(ngModel)]="photoComment2"
+                      class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="Appuis_et_montants">Appuis_et_montants</option>
+                <option value="Contreventements">Contreventements</option>
+                <option value="Ancrages">Ancrages</option>
+                <option value="Autostable">Autostable</option>
+              </select>
+            </label>
+          </div>
+
+          <div style="background: aquamarine">
+            Tout ancrage doit présenter une résistance minimale de 300 daN. (Guide professionnel du SFE)
           </div>
 
 

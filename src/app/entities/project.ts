@@ -31,8 +31,6 @@ export class Project {
   typeEchafaudage: string;
   classeEchaffodage: string;
   chargeAdmissibleEchafodage: string;
-  longueurDimensions: string;
-  hauteurDimensions: string;
   largeurDimensions: string;
   premierNiveau: string;
   nombreNiveau : string;

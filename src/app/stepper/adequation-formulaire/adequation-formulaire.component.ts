@@ -36,8 +36,6 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
       typeEchafaudage: ['', [Validators.required]],
       classeEchaffodage: ['', [Validators.required]],
       chargeAdmissibleEchafodage: ['', [Validators.required]],
-      longueurDimensions: ['', [Validators.required]],
-      hauteurDimensions: ['', [Validators.required]],
       largeurDimensions: ['', [Validators.required]],
       premierNiveau: ['', [Validators.required]],
       nombreNiveau: ['', [Validators.required]],
@@ -82,8 +80,6 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
       this.adequationForm.get('typeEchafaudage').setValue(this.project.typeEchafaudage);
       this.adequationForm.get('classeEchaffodage').setValue(this.project.classeEchaffodage);
       this.adequationForm.get('chargeAdmissibleEchafodage').setValue(this.project.chargeAdmissibleEchafodage);
-      this.adequationForm.get('longueurDimensions').setValue(this.project.longueurDimensions);
-      this.adequationForm.get('hauteurDimensions').setValue(this.project.hauteurDimensions);
       this.adequationForm.get('largeurDimensions').setValue(this.project.largeurDimensions);
       this.adequationForm.get('premierNiveau').setValue(this.project.premierNiveau);
       this.adequationForm.get('nombreNiveau').setValue(this.project.nombreNiveau);
@@ -110,8 +106,6 @@ export class AdequationFormulaireComponent implements OnInit, OnDestroy {
         project.typeEchafaudage = this.adequationForm.get('typeEchafaudage').value;
         project.classeEchaffodage = this.adequationForm.get('classeEchaffodage').value;
         project.chargeAdmissibleEchafodage = this.adequationForm.get('chargeAdmissibleEchafodage').value;
-        project.longueurDimensions = this.adequationForm.get('longueurDimensions').value;
-        project.hauteurDimensions = this.adequationForm.get('hauteurDimensions').value;
         project.largeurDimensions = this.adequationForm.get('largeurDimensions').value;
         project.premierNiveau = this.adequationForm.get('premierNiveau').value;
         project.nombreNiveau = this.adequationForm.get('nombreNiveau').value;

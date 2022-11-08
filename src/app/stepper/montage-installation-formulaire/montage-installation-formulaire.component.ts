@@ -105,7 +105,6 @@ export class MontageInstallationFormulaireComponent implements OnInit,OnDestroy 
         project.calages = this.montageInstallationForm.get('calages').value;
         project.supportAmarrage = this.montageInstallationForm.get('supportAmarrage').value;
         project.nbrAncrageTheorique = this.montageInstallationForm.get('nbrAncrageTheorique').value;
-        project.nbrAncrageConstate = this.montageInstallationForm.get('nbrAncrageConstate').value;
         project.confirmiteDispositifsRepartitionsChargeSurAppuis = this.montageInstallationForm.get('confirmiteDispositifsRepartitionsChargeSurAppuis').value;
         project.montageParticulie = this.montageInstallationForm.get('montageParticulie').value;
         project.lequelsMontageParticulie = this.montageInstallationForm.get('lequelsMontageParticulie').value;

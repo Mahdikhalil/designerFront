@@ -21,8 +21,10 @@ export class PhotoComponent implements OnInit, OnDestroy {
   message: string;
   public imagePath;
   idClient: string;
-  photoComment : string;
+  photoComment1 : string;
+  photoComment2 : string;
   stageCounter : number = 0;
+  nbrAmmarage: string;
 
   constructor(private projectService: ProjectService,
               private toaster: ToastrService,
@@ -69,17 +71,20 @@ export class PhotoComponent implements OnInit, OnDestroy {
 
   }
 
+
   addImages() {
     const formData = new FormData();
     formData.append('file', this.userFile);
-    formData.append('comment',this.photoComment);
+    formData.append('comment',this.photoComment1 + " / "+ this.photoComment2);
     formData.append('stage',"R+"+this.stageCounter);
+    formData.append('nbrAmmarage',this.nbrAmmarage);
     formData.append('isPhotoAccueil',"false");
     this.subscriptions.add(this.projectService.addImages(formData, this.idClient).subscribe(ok => {
     },response =>{
       if(response.status == 200){
         this.imgURL = null;
         this.userFile = null;
+        this.nbrAmmarage = null;
         this.toaster.success("Image sauvegardé ","Projet");
       }else{
         this.toaster.error("Ca doit être une Image ","Projet");
