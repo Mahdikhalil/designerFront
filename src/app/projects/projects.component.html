@@ -42,7 +42,7 @@
 
   <div *ngIf="tempData.length > 0">
 
-    <form class="mt-4 ml-4">
+    <!--<form class="mt-4 ml-4">
       <label for="default-search"
              class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
       <div class="relative">
@@ -57,7 +57,7 @@
                class="block p-3 w-auto pl-5 w-full text-sm dark:text-black bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                placeholder="Cherchez un projet ..." (keyup)="filterUpdate($event)" required>
       </div>
-    </form>
+    </form>-->
 
     <div class="mx-2 md:mx-200 mt-4 sm:mt-0">
       <div class="mt-2 md:mt-0">
@@ -86,7 +86,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+            <tr class="bg-white border-b dark:bg-gray-800 dark:text-white dark:border-gray-700"
                 *ngFor='let projectDto of projects; index as i;'>
               <td class="py-4 px-12 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center flex-shrink-0">
                 {{projectDto.id}}
